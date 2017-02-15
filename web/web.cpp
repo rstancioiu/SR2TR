@@ -25,7 +25,7 @@ uint32_t n,m;
 vs colr,cols;
 void computeMapping();
 bool readFiles();
-
+void writeFile(const char* name, string data);
 
 int main() {
    Cgicc cgi;
@@ -53,8 +53,12 @@ int main() {
 
    string data_source = source->getData();
    string data_target = target->getData();
-   data_r = data_source.c_str();
-   data_s = data_target.c_str();
+
+   data_r = "source.csv";
+   data_s = "target.csv";
+   writeFile(data_r, data_source);
+   writeFile(data_s, data_target);
+   
    cout<<data_source<<endl;
    cout<<data_target<<endl;
 
@@ -65,6 +69,12 @@ int main() {
    cout << "</html>\n";
 
    return 0;
+}
+
+void writeFile(const char* name, string data) {
+	ofstream outputFile(name);
+	outputFile<<data;
+	outputFile.close();
 }
 
 bool readFiles() {

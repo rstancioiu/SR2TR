@@ -76,7 +76,7 @@ inline void ReadTextFile::computeNbLine( const char *szFileName )
     if ( !_ifs.good( ) ) {
         return;
     }
-    while ( std::getline( ifs, str ) != NULL ) {
+    while ( !std::getline( ifs, str ) ) {
         if ( !emptyLine( str ) ) {
             ++_uNbLine;
         }

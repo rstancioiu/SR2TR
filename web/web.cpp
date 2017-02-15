@@ -32,14 +32,19 @@ int main() {
 
    cout << "Content-type:text/html\r\n\r\n";
    cout << "<html>\n";
+   cout<< "<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
+   cout<< "<link rel=\"stylesheet\" href=\"/lib/w3.css\">";
+   cout<< "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Lato\">";
+   cout<< "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">";
+   cout<<"<style> html,body,h1,h2,h3,h4 {font-family:\"Lato\",sans-serif}.mySlides {display:none}.w3-tag, .fa {cursor:pointer}.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}</style>\n";
    cout << "<head>\n";
-   cout << "<title>File Upload in CGI</title>\n";
+   cout << "<title>Results</title>\n";
    cout << "</head>\n";
    cout << "<body>\n";
-
+   cout<< "<div class=\"w3-content\" style=\"max-width:1100px;margin-top:80px;margin-bottom:80px\">\n";
    form_iterator fi = cgi.getElement("satisfaction");
    if( !fi->isEmpty() ) {
-   		string chosen_satisfaction = (**fi);
+		string chosen_satisfaction = (**fi);
    		if(chosen_satisfaction == "classical")
    			satisfaction = 1;
    		else 
@@ -58,13 +63,10 @@ int main() {
    data_s = "target.csv";
    writeFile(data_r, data_source);
    writeFile(data_s, data_target);
-   
-   cout<<data_source<<endl;
-   cout<<data_target<<endl;
 
    computeMapping();
 
-   cout << "<File uploaded successfully>\n";
+   cout << "</div>\n";
    cout << "</body>\n";
    cout << "</html>\n";
 
@@ -72,7 +74,9 @@ int main() {
 }
 
 void writeFile(const char* name, string data) {
-	ofstream outputFile(name);
+	 ofstream outputFile(name);
+	if(outputFile.is_open())
+	cout<<"<p> We write a file "<<name <<" </p>\n";
 	outputFile<<data;
 	outputFile.close();
 }

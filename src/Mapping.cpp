@@ -73,7 +73,7 @@ void Mapping::print_results_web(vs& colr, vs& cols) {
 		int y = f[i].second-1;
 		cout<<"<li>"<<"f["<<colr[x]<<"] = "<<cols[y]<<"</li>\n";
 	}
-	cout<<"/ul\n";
+	cout<<"</ul>\n";
 	cout<<"</p>\n";
 }
 

@@ -16,15 +16,52 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 </style>
 
 <body>
-
 <div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+	<h3>SR2TR - Algorithm of finding an injective mapping function between two interval-based databases</h3>
+	
+	<p> Data in Astrophysics are very often structured with the relational data model. One particularity is that every value is a real number and comes with an associated error measure, leading to a numerical interlal <i>[value-error, value+error]</i>. Such astrophysics databases can be seen as interval-based numerical databases. On this webpage, you can conduct experiments in order to discover an injective mapping between attributes of a source interval-based relation and a target interval-based relation. At first you choose a satisfaction (classical or canonical), then you upload two files, representing the two relations as described below. The algorithm will print the condensened representation of the two relations, the matrix of error measures and in the end the mapping found.</p>
+
+	<p> Exemple of file to upload (for each row, the elements are separated by a space):</p>
+	<table>
+		<tr>
+			<td>A err_A B err_B C err_C</td>
+		</tr>
+		<tr>
+			<td>2 0.5 3 1.5 4 1.2</td>
+		</tr>
+		<tr>
+			<td>3 1.5 4 0.5 5 1.5</td>
+		</tr>
+	</table>
+	<p> The configuration presented above corresponds to the following relation: </p>
+	<table border = "1">
+		<tr>
+			<td>r</td>
+			<td>A</td>
+			<td>B</td>
+			<td>C</td>
+		</tr>
+
+		<tr>
+			<td> t1 </td>
+			<td>[1.5,2.5]</td>
+			<td>[1.5,4.5]</td>
+			<td>[2.8,5.2]</td>
+		</tr>
+		<tr> 
+			<td> t2 </td> 
+			<td>[1.5,4.5]</td> 
+			<td>[3.5,4.5]</td> 
+			<td>[3.5,6.5]</td>
+		</tr>	
+	</table>		
 	 <p> Please choose the satisfaction and upload the source and the target files</p>
      <form enctype="multipart/form-data"
          action="/cgi-bin/results.cgi"
          method="post">
-         <input type="radio" name="subject" value="classical" 
+         <input type="radio" name="satisfaction" value="classical" 
                                     checked="checked"/> Classical 
-   		 <input type="radio" name="subject" value="canonical" /> Canonical
+   	<input type="radio" name="satisfaction" value="canonical" /> Canonical
          <p>Source Relation: <input type="file" name="source" /></p>
          <p>Target Relation: <input type="file" name="target" /></p>
 

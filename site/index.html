@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> SR2TR </title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+</style>
+
+<body>
+
+<div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+	 <p> Please choose the satisfaction and upload the source and the target files</p>
+     <form enctype="multipart/form-data"
+         action="/cgi-bin/results.cgi"
+         method="post">
+         <input type="radio" name="subject" value="classical" 
+                                    checked="checked"/> Classical 
+   		 <input type="radio" name="subject" value="canonical" /> Canonical
+         <p>Source Relation: <input type="file" name="source" /></p>
+         <p>Target Relation: <input type="file" name="target" /></p>
+
+          <p><input type="submit" value="Results" /></p>
+     </form>
+
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <!-- Include all compiled plugins (below), or include individual files as needed -->
+     <script src="js/bootstrap.min.js"></script>
+</div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+        <p>Would you wish to provide us with some feedback, don't hesitate to contact us at:</p>
+        <p>stancioiu.razvan@gmail.com</p>
+</footer>
+
+
+</body>
+</html>

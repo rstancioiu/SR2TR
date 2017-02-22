@@ -131,7 +131,7 @@ void computeMapping(){
 	if(!result) return;
 	// compute mapping
 	Mapping* mapping = new Mapping();
-	vector<pair<int,int> >  f = mapping->SR2TR(r,s,satisfaction);
+	vector<pair< uint32_t, uint32_t> >  f = mapping->SR2TR(r,s,satisfaction);
 
 	mapping->print_results_web(colr,cols);
 }

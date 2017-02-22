@@ -59,13 +59,25 @@ void UIND::print_matrix() {
 	cout<<endl;
 }
 
-void UIND::print_matrix_web() {
+void UIND::print_matrix_web(vs &colr, vs& cols, vector<pair<uint32_t, uint32_t> >& f) {
 	cout<<"<p> MATRIX ERROR BETWEEN R AND S </p>"<<"\n";
 	cout<<"<table border=\"1\">"<<"\n";
+	cout<<"<tr>\n";
+	cout<<"<td>\n </td>\n";
+	for(uint32_t i=0; i<M[0].size();++i) {
+		cout<<"<td>\n";
+		cout<<cols[i]<<"\n";
+		cout<<"</td>\n";
+	}
+	cout<<"</tr>\n";
 	for(uint32_t i=0;i<M.size();++i) {
 		cout<<"<tr>\n";
+		cout<<"<td>\n";
+		cout<<colr[i]<<"\n";
+		cout<<"</td>\n";
 		for(uint32_t j=0;j<M[i].size();++j) {
-			cout<<"<td>\n";
+			if(f[i].second == j) cout<<"<td bgcolor=\"#FF0000\">\n"; 
+			else cout<<"<td>\n";
 			cout<<fixed<<setprecision(3)<<M[i][j]<<"\n";
 			cout<<"</td>\n";
 		}

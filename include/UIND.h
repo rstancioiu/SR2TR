@@ -48,7 +48,7 @@ class UIND{
 		/**
 			Method used to print the state of the matrix
 		*/
-		void print_matrix_web();
+		void print_matrix_web(vs &colr, vs& cols, vector<pair<uint32_t,uint32_t> >& f);
 
 	private:
 

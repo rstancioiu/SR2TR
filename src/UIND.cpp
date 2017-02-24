@@ -71,12 +71,17 @@ void UIND::print_matrix_web(vs &colr, vs& cols, vector<pair<uint32_t, uint32_t> 
 	}
 	cout<<"</tr>\n";
 	for(uint32_t i=0;i<M.size();++i) {
+		uint32_t target_mapping = 0 ;
+		for(uint32_t j = 0; j < M[0].size(); ++j ) {
+			if(f[j].first-1 == i)
+				target_mapping = f[j].second-1;
+		}
 		cout<<"<tr>\n";
 		cout<<"<td>\n";
 		cout<<colr[i]<<"\n";
 		cout<<"</td>\n";
 		for(uint32_t j=0;j<M[i].size();++j) {
-			if(f[i].second == j) cout<<"<td bgcolor=\"#FF0000\">\n"; 
+			if(target_mapping == j) cout<<"<td bgcolor=\"#FF0000\">\n"; 
 			else cout<<"<td>\n";
 			cout<<fixed<<setprecision(3)<<M[i][j]<<"\n";
 			cout<<"</td>\n";

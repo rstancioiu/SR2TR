@@ -43,21 +43,22 @@ vs colr,cols;
 void computeMapping();
 bool readFiles();
 void writeFile(const char* name, string data);
+void removeFiles(const char* file1, const char* file2);
 
 int main() {
    Cgicc cgi;
 
-   cout << "Content-type:text/html\r\n\r\n";
-   cout << "<html>\n";
+   cout<< "Content-type:text/html\r\n\r\n";
+   cout<< "<html>\n";
    cout<< "<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
    cout<< "<link rel=\"stylesheet\" href=\"/lib/w3.css\">";
    cout<< "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Lato\">";
    cout<< "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">";
-   cout<<"<style> html,body,h1,h2,h3,h4 {font-family:\"Lato\",sans-serif}.mySlides {display:none}.w3-tag, .fa {cursor:pointer}.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}</style>\n";
-   cout << "<head>\n";
-   cout << "<title>Results</title>\n";
-   cout << "</head>\n";
-   cout << "<body>\n";
+   cout<< "<style> html,body,h1,h2,h3,h4 {font-family:\"Lato\",sans-serif}.mySlides {display:none}.w3-tag, .fa {cursor:pointer}.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}</style>\n";
+   cout<< "<head>\n";
+   cout<< "<title>Results</title>\n";
+   cout<< "</head>\n";
+   cout<< "<body>\n";
    cout<< "<div class=\"w3-content\" style=\"max-width:1100px;margin-top:80px;margin-bottom:80px\">\n";
    form_iterator fi = cgi.getElement("satisfaction");
    if( !fi->isEmpty() ) {
@@ -73,27 +74,44 @@ int main() {
    const_file_iterator source = cgi.getFile("source");
    const_file_iterator target = cgi.getFile("target");
 
-   string data_source = source->getData();
-   string data_target = target->getData();
+   if(source != cgi.getFiles().end() && target != cgi.getFiles().end() ) {
+  	 string data_source = source->getData();
+	 string data_target = target->getData();
 
-   data_r = "source.csv";
-   data_s = "target.csv";
-   writeFile(data_r, data_source);
-   writeFile(data_s, data_target);
+   	 data_r = "source.csv";
+  	 data_s = "target.csv";
+  	 writeFile(data_r, data_source);
+  	 writeFile(data_s, data_target);
 
-   computeMapping();
-
+   	computeMapping();
+   } else {
+	cout << "<p> The files were not uploaded correctly !! </p>\n";
+   }
+   cout << "<p>\n";
+   cout << "<a href=\"/\"><button>Home</button></a>\n";
+   cout << "</p>\n";
    cout << "</div>\n";
+   cout << "</br>\n";
+
+   cout << "<footer class=\"w3-container w3-light-grey w3-center\" style=\"position:fixed;bottom:0;left:0;right:0;height:auto\">\n";
+   cout << "<p>Would you wish to provide us with some feedback, don't hesitate to contact us at:</p>\n";
+   cout << "<p>stancioiu.razvan@gmail.com</p>\n";
+   cout << "</footer>";
+
    cout << "</body>\n";
    cout << "</html>\n";
 
+   removeFiles(data_r, data_s);
    return 0;
 }
 
+void removeFiles(const char* file1, const char* file2) {
+	remove(file1);
+	remove(file2);
+}
+
 void writeFile(const char* name, string data) {
-	 ofstream outputFile(name);
-	if(outputFile.is_open())
-	cout<<"<p> We write a file "<<name <<" </p>\n";
+	ofstream outputFile(name);
 	outputFile<<data;
 	outputFile.close();
 }
@@ -110,19 +128,19 @@ bool readFiles() {
 	colr = prs.first.second;
 	cols = prs.second.second;
 	if(r.size()==0) {
-		cout<<"The source relation is empty"<<endl;
+		cout<<"<p> The source relation is empty </p>"<<endl;
 		return false;
 	}
 	if(s.size()==0) {
-		cout<<"The target relation is empty"<<endl;
+		cout<<"<p> The target relation is empty </p>"<<endl;
 		return false;
 	}
 	if(r[0].size()>s[0].size()) {
-		cout<<"The number of attributes of source relation is bigger "
-			<<"than the number of attributes of target relation"<<endl;
+		cout<<"<p> The number of attributes of source relation is bigger "
+			<<"than the number of attributes of target relation </p>"<<endl;
 		return false;
 	}
-	
+
 	return true;
 }
 

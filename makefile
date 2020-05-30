@@ -41,15 +41,6 @@ tester: $(OBJECTS) $(BUILDDIR)/tester.o
 	@mkdir -p $(TARGETDIR)
 	$(CC) $(CFLAGS) $^ -o $(TARGET_TESTER)
 
-$(BUILDDIR)/web.o: web/web.cpp $(wildcard include/*.h)
-	@mkdir -p $(BUILDDIR)	
-	$(CC) $(CFLAGS) $(INC) -lcgicc $< -c -o $@
-
-web: $(OBJECTS) $(BUILDDIR)/web.o
-	@echo " Generating web page..."
-	@mkdir -p $(TARGETWEB)
-	$(CC) $(CFLAGS) $^ -o $(TARGET_WEB) -lcgicc
-
 clean:
 	@echo " Cleaning..."; 
 	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGETDIR)

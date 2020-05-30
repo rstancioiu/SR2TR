@@ -73,6 +73,3 @@ void read(const char* data_r)
 	target.close();
 	source.close();
 }
-
-
-

@@ -18,43 +18,51 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-
 #ifndef __READTEXTFILE_H__
 #define __READTEXTFILE_H__
 
 #include "Util.h"
 
-class ReadTextFile
-{
-private:
-	char _cDelim;
+class ReadTextFile {
+  private:
+    char _cDelim;
     size_t _uNbCol;
     size_t _uNbLine;
     ifstream _ifs;
     vector<string> colNames;
 
-    void setDelim( const char cDelim )   { _cDelim = cDelim; }
-    char getDelim( )				     { return _cDelim; }
-    void setNbCol( const size_t nNbCol ) { _uNbCol = nNbCol; }
+    void setDelim(const char cDelim) {
+        _cDelim = cDelim;
+    }
+    char getDelim() {
+        return _cDelim;
+    }
+    void setNbCol(const size_t nNbCol) {
+        _uNbCol = nNbCol;
+    }
 
-    void computeNbLine( const char *szFileName );
-	bool emptyLine( const string &str );
+    void computeNbLine(const char *szFileName);
+    bool emptyLine(const string &str);
 
-    void splitline( const string &str, char cDelim, vector<string> &vstring ) const;
-    bool readline( string &str );
+    void splitline(const string &str, char cDelim,
+                   vector<string> &vstring) const;
+    bool readline(string &str);
 
-public:
-	ReadTextFile( char cDelim = '\0' );
-	~ReadTextFile();
+  public:
+    ReadTextFile(char cDelim = '\0');
+    ~ReadTextFile();
 
-    size_t getNbLine( )				   { return _uNbLine; }
-    size_t getNbCol( )				   { return _uNbCol; }
+    size_t getNbLine() {
+        return _uNbLine;
+    }
+    size_t getNbCol() {
+        return _uNbCol;
+    }
 
-    bool openTextFile( const char* szFileName, vector<string> &vstring );
-    void closeTextFile( );
+    bool openTextFile(const char *szFileName, vector<string> &vstring);
+    void closeTextFile();
 
-    bool getline( vector<string> &vstring, bool strict = true );
-
+    bool getline(vector<string> &vstring, bool strict = true);
 };
 
 #endif // __READTEXTFILE_H__

@@ -15,10 +15,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
     
-#include "ReadTextFile.h"
-#include "Bitset.h"
-#include "Util.h"
-#include <bits/stdc++.h>
+#include "ReadTextFile.hpp"
+#include "Bitset.hpp"
+#include "Util.hpp"
+#include <bits/stdc++.hpp>
 
 using namespace std;
 

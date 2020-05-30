@@ -1,4 +1,4 @@
-#include "Bitset.h"
+#include "Bitset.hpp"
 
 Bitset::Bitset() {
     array.resize(DEFAULT_SIZE);

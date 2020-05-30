@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Util.h"
+#include "Util.hpp"
 
 class Bitset {
 

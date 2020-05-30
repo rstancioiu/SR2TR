@@ -21,7 +21,7 @@
 #ifndef __READTEXTFILE_H__
 #define __READTEXTFILE_H__
 
-#include "Util.h"
+#include "Util.hpp"
 
 class ReadTextFile {
   private:

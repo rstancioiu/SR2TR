@@ -1,7 +1,7 @@
-#include "Bitset.h"
-#include "CR.h"
-#include "UIND.h"
-#include "Util.h"
+#include "Bitset.hpp"
+#include "CR.hpp"
+#include "UIND.hpp"
+#include "Util.hpp"
 
 class Mapping {
   public:

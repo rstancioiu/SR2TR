@@ -1,4 +1,4 @@
-#include "CR.h"
+#include "CR.hpp"
 
 void CR::compute_canonical_adom(Relation &r, Relation &s) {
 

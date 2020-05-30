@@ -15,9 +15,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "Mapping.h"
-#include "Reader.h"
-#include "Util.h"
+#include "Mapping.hpp"
+#include "Reader.hpp"
+#include "Util.hpp"
 
 using namespace std;
 

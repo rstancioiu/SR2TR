@@ -1,5 +1,5 @@
-#include "Bitset.h"
-#include "Util.h"
+#include "Bitset.hpp"
+#include "Util.hpp"
 
 class CR {
 

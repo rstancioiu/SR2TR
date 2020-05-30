@@ -1,4 +1,4 @@
-#include "Reader.h"
+#include "Reader.hpp"
 
 pair<pair<Relation, vs>, pair<Relation, vs>>
 Reader::readFiles(const char *data_r, const char *data_s) {

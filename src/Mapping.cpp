@@ -1,5 +1,5 @@
-#include "Mapping.h"
-#include "Hungarian.h"
+#include "Mapping.hpp"
+#include "Hungarian.hpp"
 
 vector<pair<uint32_t, uint32_t>> Mapping::SR2TR(Relation &r, Relation &s,
                                                 int satisfaction) {

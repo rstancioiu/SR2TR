@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ReadTextFile.h"
-#include "Util.h"
+#include "ReadTextFile.hpp"
+#include "Util.hpp"
 
 class Reader {
 

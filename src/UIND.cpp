@@ -1,4 +1,4 @@
-#include "UIND.h"
+#include "UIND.hpp"
 
 vector<vector<double>> UIND::MEM(vector<Bitset> &cr, uint32_t rsize,
                                  uint32_t ssize) {

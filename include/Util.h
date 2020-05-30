@@ -1,6 +1,4 @@
-
-#ifndef UTIL_H
-#define UTIL_H
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -21,5 +19,3 @@ typedef vector<vector<Interval> > Relation;
 typedef vector<vector<int> > vvi;
 typedef vector<string> vs;
 typedef vector<bool> vb;
-
-#endif // UTIL_H

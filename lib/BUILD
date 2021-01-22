@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 cc_library(
-    name = "Bitset",
+    name = "bitset",
     srcs = [
         "Bitset.cpp"
     ],
@@ -12,12 +12,12 @@ cc_library(
 )
 
 cc_test(
-    name = "Bitset_test",
+    name = "bitset_test",
     srcs = [
         "Bitset_test.cpp"
     ],
     deps = [
-        ":Bitset",
+        ":bitset",
         "@googletest//:gtest_main",
     ],
 )
@@ -25,7 +25,6 @@ cc_test(
 cc_library(
     name = "SR2TR",
     srcs = [
-        "Bitset.cpp",
         "CR.cpp",
         "Hungarian.cpp",
         "Mapping.cpp",
@@ -43,5 +42,11 @@ cc_library(
         "UIND.hpp",
         "Util.hpp"
     ],
-    visibility = ["//command-line:__pkg__"],
+    deps = [
+        ":bitset"
+    ],
+    visibility = [
+        "//command-line:__pkg__",
+        "//test:__pkg__"
+    ],
 )

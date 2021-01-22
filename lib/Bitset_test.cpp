@@ -1,4 +1,4 @@
-#include "core/Bitset.hpp"
+#include "lib/Bitset.hpp"
 
 #include "gtest/gtest.h"
 

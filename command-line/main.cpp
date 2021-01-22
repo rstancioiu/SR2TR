@@ -1,6 +1,6 @@
-#include "core/Mapping.hpp"
-#include "core/Reader.hpp"
-#include "core/Util.hpp"
+#include "lib/Mapping.hpp"
+#include "lib/Reader.hpp"
+#include "lib/Util.hpp"
 
 using namespace std;
 

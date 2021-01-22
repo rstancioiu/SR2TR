@@ -6,9 +6,7 @@
 
 ### Setup envirnoment
 ```
-sudo apt-get install g++
-sudo apt-get install cmake
-sudo apt-get install ninja-build
+sudo apt-get install g++ cmake ninja-build
 ```
 ### Build solution
 ```

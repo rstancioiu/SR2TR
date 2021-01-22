@@ -18,7 +18,7 @@ cc_test(
     ],
     deps = [
         ":Bitset",
-        "@com_google_googletest//:gtest_main",
+        "@googletest//:gtest_main",
     ],
 )
 

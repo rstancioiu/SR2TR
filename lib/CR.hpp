@@ -1,4 +1,7 @@
+#pragma once
+
 #include "Bitset.hpp"
+#include "Relation.hpp"
 #include "Util.hpp"
 
 class CR {

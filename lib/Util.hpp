@@ -12,8 +12,6 @@
 #include <unordered_map>
 #include <vector>
 
-using Interval = std::pair<double, double>;
-using Relation = std::vector<std::vector<Interval>>;
 using vvi = std::vector<std::vector<int>>;
 using vs = std::vector<std::string>;
 using vb = std::vector<bool>;

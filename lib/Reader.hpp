@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ReadTextFile.hpp"
+#include "Relation.hpp"
 #include "Util.hpp"
 
 class Reader {
@@ -20,7 +21,7 @@ class Reader {
        <relation,attributes>) of the source and target input
     */
     std::pair<std::pair<Relation, vs>, std::pair<Relation, vs>> readFiles(const char *data_r,
-                                                           const char *data_s);
+                                                                          const char *data_s);
 
   private:
     /**

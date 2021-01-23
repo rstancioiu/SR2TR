@@ -39,6 +39,7 @@ cc_library(
         "Mapping.hpp",
         "Reader.hpp",
         "ReadTextFile.hpp",
+        "Relation.hpp",
         "UIND.hpp",
         "Util.hpp"
     ],

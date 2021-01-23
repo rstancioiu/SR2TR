@@ -3,8 +3,7 @@
 #include "Bitset.hpp"
 
 class UIND {
-
-  public:
+   public:
     /**
             Default constructor
     */
@@ -18,8 +17,8 @@ class UIND {
                        sszie size of the target relation s
             @return 2D-array corresponding to the matrix of error measures
     */
-    std::vector<std::vector<double>> MEM(std::vector<Bitset> &cr, uint32_t rsize,
-                                         uint32_t ssize);
+    std::vector<std::vector<double>> MEM(std::vector<Bitset> &cr,
+                                         uint32_t rsize, uint32_t ssize);
 
     /**
             Method used to print the state of the matrix
@@ -29,9 +28,10 @@ class UIND {
     /**
             Method used to print the state of the matrix
     */
-    void print_matrix_web(std::vector<std::string> &colr, std::vector<std::string> &cols,
+    void print_matrix_web(std::vector<std::string> &colr,
+                          std::vector<std::string> &cols,
                           std::vector<std::pair<uint32_t, uint32_t>> &f);
 
-  private:
+   private:
     std::vector<std::vector<double>> M;
 };

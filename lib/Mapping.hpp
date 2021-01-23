@@ -5,7 +5,7 @@
 #include "UIND.hpp"
 
 class Mapping {
-  public:
+   public:
     /**
             Default Constructor
     */
@@ -23,14 +23,16 @@ class Mapping {
     /**
             Prints the results of the algorithm SR2TR
     */
-    void print_results(std::vector<std::string> &colr, std::vector<std::string> &cols);
+    void print_results(std::vector<std::string> &colr,
+                       std::vector<std::string> &cols);
 
     /**
             Prints the results of the algorithm SR2TR for web
     */
-    void print_results_web(std::vector<std::string> &colr, std::vector<std::string> &cols);
+    void print_results_web(std::vector<std::string> &colr,
+                           std::vector<std::string> &cols);
 
-  private:
+   private:
     /**
             Method of finding the minimum weight matching from a matrix M
             @param M matrix
@@ -38,10 +40,10 @@ class Mapping {
                             the minimum cost of the matching
                         an array of pairs of matched attributes
     */
-    std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>>
-    FindMatching(std::vector<std::vector<double>> &M);
+    std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> FindMatching(
+        std::vector<std::vector<double>> &M);
 
-  private:
+   private:
     // Number of attributes of R
     uint32_t n;
 

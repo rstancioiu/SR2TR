@@ -1,9 +1,9 @@
-#include "lib/Mapping.hpp"
-#include "lib/Reader.hpp"
-
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "lib/Mapping.hpp"
+#include "lib/Reader.hpp"
 
 const char *data_r;
 const char *data_s;
@@ -17,7 +17,8 @@ void readFiles();
 int main(int argc, char *argv[]) {
     data_r = argv[1];
     data_s = argv[2];
-    std::cout << "Please choose the satisfaction metric (type 1 or 2) :" << std::endl;
+    std::cout << "Please choose the satisfaction metric (type 1 or 2) :"
+              << std::endl;
     std::cin >> satisfaction;
     if (satisfaction != 1 && satisfaction != 2) {
         std::cout << "There is no satisfaction " << satisfaction << std::endl;
@@ -31,8 +32,9 @@ int main(int argc, char *argv[]) {
 void readFiles() {
     // read files
     Reader *reader = new Reader();
-    std::pair<std::pair<Relation, std::vector<std::string>>, std::pair<Relation, std::vector<std::string>>> prs =
-        reader->readFiles(data_r, data_s);
+    std::pair<std::pair<Relation, std::vector<std::string>>,
+              std::pair<Relation, std::vector<std::string>>>
+        prs = reader->readFiles(data_r, data_s);
     delete reader;
 
     r = prs.first.first;
@@ -50,7 +52,8 @@ void readFiles() {
     }
     if (r[0].size() > s[0].size()) {
         std::cout << "The number of attributes of source relation is bigger "
-                  << "than the number of attributes of target relation" << std::endl;
+                  << "than the number of attributes of target relation"
+                  << std::endl;
         exit(0);
     }
 }
@@ -60,7 +63,8 @@ void computeMapping() {
 
     // compute mapping
     Mapping *mapping = new Mapping();
-    std::vector<std::pair<uint32_t, uint32_t>> f = mapping->SR2TR(r, s, satisfaction);
+    std::vector<std::pair<uint32_t, uint32_t>> f =
+        mapping->SR2TR(r, s, satisfaction);
 
     mapping->print_results(colr, cols);
 }

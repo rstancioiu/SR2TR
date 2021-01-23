@@ -26,8 +26,7 @@ Hungarian::Hungarian(std::vector<std::vector<double>> &cost_matrix) {
 
 // used to compute an augmenting path for Hopcroft-Karp algorithm
 bool Hungarian::dfs_hopcroft_karp(uint32_t v) {
-    if (vis[v])
-        return false;
+    if (vis[v]) return false;
     vis[v] = true;
     for (uint32_t u = 0; u < g[v].size(); ++u) {
         if (!r[g[v][u]]) {
@@ -47,7 +46,6 @@ bool Hungarian::dfs_hopcroft_karp(uint32_t v) {
 }
 
 bool Hungarian::hopcroft_karp() {
-
     bool change = true;
     while (change) {
         change = false;
@@ -79,7 +77,7 @@ void Hungarian::dfs_minimum_set_cover(uint32_t v) {
 }
 
 void Hungarian::minimum_set_cover() {
-    std::fill(cover, cover + 2 * n + 1, 0); // set denoted with Z
+    std::fill(cover, cover + 2 * n + 1, 0);  // set denoted with Z
     for (uint32_t i = 1; i <= n; ++i) {
         if (!l[i]) {
             dfs_minimum_set_cover(i);
@@ -173,7 +171,8 @@ void Hungarian::print_matrix() {
     std::cout << std::endl;
 }
 
-std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> Hungarian::compute_hungarian() {
+std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>>
+Hungarian::compute_hungarian() {
     // step 1
     row_minima();
     // step 2

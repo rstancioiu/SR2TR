@@ -4,7 +4,7 @@
 #include <vector>
 
 class Hungarian {
-  public:
+   public:
     Hungarian(){};
 
     /**
@@ -19,9 +19,10 @@ class Hungarian {
             @return a pair composed of the minimum cost of the matching
                             and a vector corresponding to the matching
     */
-    std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> compute_hungarian();
+    std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>>
+    compute_hungarian();
 
-  private:
+   private:
     /**
             Recursive Method that realizes a Depth First Search from
             given vertex v. It is used in the hopcroft_karp method.
@@ -84,7 +85,7 @@ class Hungarian {
     */
     void print_matrix();
 
-  private:
+   private:
     // the size of the initial cost matrix
     uint32_t n, m;
 

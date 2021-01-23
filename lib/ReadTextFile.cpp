@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "ReadTextFile.hpp"
+
 #include <string>
 
 //////////////////////////////////////////////////////////////////////
@@ -26,17 +27,13 @@
 //////////////////////////////////////////////////////////////////////
 
 ReadTextFile::ReadTextFile(char cDelim)
-    : _cDelim(cDelim), _uNbCol(0), _uNbLine(0) {
-}
+    : _cDelim(cDelim), _uNbCol(0), _uNbLine(0) {}
 
-ReadTextFile::~ReadTextFile() {
-    closeTextFile();
-}
+ReadTextFile::~ReadTextFile() { closeTextFile(); }
 
 inline bool ReadTextFile::emptyLine(const std::string &str) {
     for (std::string::const_iterator it = str.begin(); it != str.end(); ++it)
-        if (*it >= ' ')
-            return false;
+        if (*it >= ' ') return false;
 
     return true;
 }
@@ -52,7 +49,8 @@ inline void ReadTextFile::splitline(const std::string &str, char cDelim,
             ++posBegin;
         }
 
-        size_t posEnd2 = posEnd == std::string::npos ? str.length() - 1 : posEnd - 1;
+        size_t posEnd2 =
+            posEnd == std::string::npos ? str.length() - 1 : posEnd - 1;
 
         while (posEnd2 > posBegin && str[posEnd2] == ' ') {
             --posEnd2;
@@ -77,7 +75,7 @@ inline void ReadTextFile::computeNbLine(const char *szFileName) {
     }
 
     if (_uNbLine > 0) {
-        --_uNbLine; // on ne compte pas la ligne des noms de colonnes
+        --_uNbLine;  // on ne compte pas la ligne des noms de colonnes
     }
 }
 
@@ -96,8 +94,7 @@ inline bool ReadTextFile::readline(std::string &str) {
                 str[lenCur - 1] == ' ')) {
             --lenCur;
         }
-        if (lenInit > lenCur)
-            str = str.substr(0, lenCur);
+        if (lenInit > lenCur) str = str.substr(0, lenCur);
 
         if (!emptyLine(str)) {
             return true;
@@ -157,11 +154,11 @@ bool ReadTextFile::openTextFile(const char *szFileName,
 void ReadTextFile::closeTextFile() {
     _uNbLine = 0;
 
-    if (_ifs.is_open())
-        _ifs.close();
+    if (_ifs.is_open()) _ifs.close();
 }
 
-bool ReadTextFile::getline(std::vector<std::string> &vstring, bool strick /*= true*/) {
+bool ReadTextFile::getline(std::vector<std::string> &vstring,
+                           bool strick /*= true*/) {
     std::string str;
 
     if (!readline(str)) {

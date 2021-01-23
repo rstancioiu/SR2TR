@@ -5,10 +5,10 @@
 #include <iostream>
 
 void CR::compute_canonical_adom(Relation &r, Relation &s) {
-
     canonicalAttrAdom = new std::vector<double>[n + m];
 
-    std::vector<std::pair<double, int>> *aux = new std::vector<std::pair<double, int>>[n + m];
+    std::vector<std::pair<double, int>> *aux =
+        new std::vector<std::pair<double, int>>[n + m];
 
     for (uint32_t i = 0; i < r.size(); ++i) {
         for (uint32_t j = 0; j < n; ++j) {
@@ -40,7 +40,6 @@ void CR::compute_canonical_adom(Relation &r, Relation &s) {
 }
 
 void CR::compute_classical_adom(Relation &r, Relation &s) {
-
     classicalAttrAdom = new std::vector<Interval>[n + m];
     for (uint32_t i = 0; i < r.size(); ++i) {
         for (uint32_t j = 0; j < n; ++j) {
@@ -82,8 +81,7 @@ int CR::binary_search_canonical_low(double a, uint32_t attribute) {
             high = middle;
         }
     }
-    if (low > 0 && canonicalAttrAdom[attribute][low - 1] == a)
-        low--;
+    if (low > 0 && canonicalAttrAdom[attribute][low - 1] == a) low--;
     return low;
 }
 
@@ -168,10 +166,8 @@ void CR::init(Relation &r, Relation &s, int satisfaction) {
         m = s[0].size();
     }
 
-    if (satisfaction == 2)
-        compute_canonical_adom(r, s);
-    if (satisfaction == 1)
-        compute_classical_adom(r, s);
+    if (satisfaction == 2) compute_canonical_adom(r, s);
+    if (satisfaction == 1) compute_classical_adom(r, s);
 
     // ADOM(r \cup s)
     for (uint32_t i = 0; i < r.size(); ++i) {
@@ -198,7 +194,8 @@ void CR::init(Relation &r, Relation &s, int satisfaction) {
 }
 
 // Maps the tables r and s into an array of Bitsets
-std::vector<Bitset> CR::Preprocessing(Relation &r, Relation &s, int satisfaction) {
+std::vector<Bitset> CR::Preprocessing(Relation &r, Relation &s,
+                                      int satisfaction) {
     init(r, s, satisfaction);
 
     uint32_t p = n + m;
@@ -217,10 +214,12 @@ std::vector<Bitset> CR::Preprocessing(Relation &r, Relation &s, int satisfaction
 }
 
 void CR::print_cr() {
-
-    std::cout << "--------------------------------------------------" << std::endl;
-    std::cout << "        CONDENSED REPRESENTATION CR(r,s)          " << std::endl;
-    std::cout << "--------------------------------------------------" << std::endl;
+    std::cout << "--------------------------------------------------"
+              << std::endl;
+    std::cout << "        CONDENSED REPRESENTATION CR(r,s)          "
+              << std::endl;
+    std::cout << "--------------------------------------------------"
+              << std::endl;
     for (uint32_t i = 0; i < adom.size(); ++i) {
         std::cout << "[" << std::setw(4) << adom[i].first << ";" << std::setw(5)
                   << adom[i].second << "] || " << cr[i].toString() << std::endl;
@@ -229,7 +228,6 @@ void CR::print_cr() {
 }
 
 void CR::print_cr_web() {
-
     std::cout << "<p> CONDENSED REPRESENTATION CR(r,s) </p>"
               << "\n";
     std::cout << "<table border=\"1\">"

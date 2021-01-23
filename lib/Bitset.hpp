@@ -5,8 +5,7 @@
 #include <vector>
 
 class Bitset {
-
-  public:
+   public:
     /**
             Default Constructor
     */
@@ -96,7 +95,7 @@ class Bitset {
     */
     bool operator!=(const Bitset &b) const;
 
-  private:
+   private:
     // Default size of the bitset
     static const unsigned int DEFAULT_SIZE = 256;
 

@@ -4,8 +4,7 @@
 #include "Relation.hpp"
 
 class Reader {
-
-  public:
+   public:
     /**
             Default constructor
     */
@@ -20,15 +19,16 @@ class Reader {
        <relation,attributes>) of the source and target input
     */
     std::pair<std::pair<Relation, std::vector<std::string>>,
-             std::pair<Relation, std::vector<std::string>>> readFiles(const char *data_r,
-                                                                      const char *data_s);
+              std::pair<Relation, std::vector<std::string>>>
+    readFiles(const char *data_r, const char *data_s);
 
-  private:
+   private:
     /**
             Reads an input file and transforms it into a relation
             @param  data input file
                         new_relation the relation that is filled from the input
        data attrName array of the name of the attributes
     */
-    void read(const char *data, Relation &new_relation, std::vector<std::string> &attrName);
+    void read(const char *data, Relation &new_relation,
+              std::vector<std::string> &attrName);
 };

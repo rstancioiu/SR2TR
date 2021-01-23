@@ -1,11 +1,10 @@
 #include "UIND.hpp"
 
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 
-std::vector<std::vector<double>> UIND::MEM(std::vector<Bitset> &cr, uint32_t rsize,
-                                           uint32_t ssize) {
-
+std::vector<std::vector<double>> UIND::MEM(std::vector<Bitset> &cr,
+                                           uint32_t rsize, uint32_t ssize) {
     for (uint32_t A = 0; A < rsize; ++A) {
         // used to compute the support of 2 degree
         std::vector<int> count(ssize, 0);
@@ -50,9 +49,12 @@ std::vector<std::vector<double>> UIND::MEM(std::vector<Bitset> &cr, uint32_t rsi
 }
 
 void UIND::print_matrix() {
-    std::cout << "--------------------------------------------------" << std::endl;
-    std::cout << "        MATRIX ERROR BETWEEN R AND S              " << std::endl;
-    std::cout << "--------------------------------------------------" << std::endl;
+    std::cout << "--------------------------------------------------"
+              << std::endl;
+    std::cout << "        MATRIX ERROR BETWEEN R AND S              "
+              << std::endl;
+    std::cout << "--------------------------------------------------"
+              << std::endl;
     for (uint32_t i = 0; i < M.size(); ++i) {
         for (uint32_t j = 0; j < M[i].size(); ++j) {
             std::cout << std::fixed << std::setprecision(3) << M[i][j] << " ";
@@ -62,7 +64,8 @@ void UIND::print_matrix() {
     std::cout << std::endl;
 }
 
-void UIND::print_matrix_web(std::vector<std::string> &colr, std::vector<std::string> &cols,
+void UIND::print_matrix_web(std::vector<std::string> &colr,
+                            std::vector<std::string> &cols,
                             std::vector<std::pair<uint32_t, uint32_t>> &f) {
     std::cout << "<p> MATRIX ERROR BETWEEN R AND S </p>"
               << "\n";
@@ -79,8 +82,7 @@ void UIND::print_matrix_web(std::vector<std::string> &colr, std::vector<std::str
     for (uint32_t i = 0; i < M.size(); ++i) {
         uint32_t target_mapping = 0;
         for (uint32_t j = 0; j < M[0].size(); ++j) {
-            if (f[j].first - 1 == i)
-                target_mapping = f[j].second - 1;
+            if (f[j].first - 1 == i) target_mapping = f[j].second - 1;
         }
         std::cout << "<tr>\n";
         std::cout << "<td>\n";

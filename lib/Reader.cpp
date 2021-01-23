@@ -1,6 +1,7 @@
 #include "Reader.hpp"
 
-std::pair<std::pair<Relation, std::vector<std::string>>, std::pair<Relation, std::vector<std::string>>>
+std::pair<std::pair<Relation, std::vector<std::string>>,
+          std::pair<Relation, std::vector<std::string>>>
 Reader::readFiles(const char *data_r, const char *data_s) {
     Relation r, s;
     std::vector<std::string> cr, cs;
@@ -9,13 +10,12 @@ Reader::readFiles(const char *data_r, const char *data_s) {
     return make_pair(make_pair(r, cr), make_pair(s, cs));
 }
 
-void Reader::read(const char *data, Relation &relation, std::vector<std::string> &attrName) {
-
+void Reader::read(const char *data, Relation &relation,
+                  std::vector<std::string> &attrName) {
     // search the column names in the input data
     char _cDelim = '\0';
     ReadTextFile textFile(_cDelim);
-    if (!textFile.openTextFile(data, attrName))
-        return;
+    if (!textFile.openTextFile(data, attrName)) return;
 
     // array used to find the error measurement associated to a certain
     // parameter i.e. if A is an attribute, search for err_A

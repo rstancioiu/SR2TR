@@ -4,8 +4,7 @@
 #include "Relation.hpp"
 
 class CR {
-
-  public:
+   public:
     /**
             Default Constructor
     */
@@ -20,7 +19,8 @@ class CR {
             @return an array of binary relations, i.e. the condensed
        representation
     */
-    std::vector<Bitset> Preprocessing(Relation &r, Relation &s, int satisfaction);
+    std::vector<Bitset> Preprocessing(Relation &r, Relation &s,
+                                      int satisfaction);
 
     /**
             Shows the result of the preprocessing that can be inserted in a web
@@ -33,7 +33,7 @@ class CR {
     */
     void print_cr();
 
-  private:
+   private:
     /**
             Checks if an interval is included into the domain active of an
        attribute with regard to the satisfaction chosen.

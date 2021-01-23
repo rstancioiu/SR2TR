@@ -1,25 +1,26 @@
 #include "lib/Mapping.hpp"
 #include "lib/Reader.hpp"
-#include "lib/Util.hpp"
 
-using namespace std;
+#include <iostream>
+#include <string>
+#include <vector>
 
 const char *data_r;
 const char *data_s;
 int satisfaction;
 Relation r, s;
 uint32_t n, m;
-vs colr, cols;
+std::vector<std::string> colr, cols;
 void computeMapping();
 void readFiles();
 
 int main(int argc, char *argv[]) {
     data_r = argv[1];
     data_s = argv[2];
-    cout << "Please choose the satisfaction metric (type 1 or 2) :" << endl;
-    cin >> satisfaction;
+    std::cout << "Please choose the satisfaction metric (type 1 or 2) :" << std::endl;
+    std::cin >> satisfaction;
     if (satisfaction != 1 && satisfaction != 2) {
-        cout << "There is no satisfaction " << satisfaction << endl;
+        std::cout << "There is no satisfaction " << satisfaction << std::endl;
         return 0;
     }
     computeMapping();
@@ -30,7 +31,7 @@ int main(int argc, char *argv[]) {
 void readFiles() {
     // read files
     Reader *reader = new Reader();
-    pair<pair<Relation, vs>, pair<Relation, vs>> prs =
+    std::pair<std::pair<Relation, std::vector<std::string>>, std::pair<Relation, std::vector<std::string>>> prs =
         reader->readFiles(data_r, data_s);
     delete reader;
 
@@ -40,16 +41,16 @@ void readFiles() {
     colr = prs.first.second;
     cols = prs.second.second;
     if (r.size() == 0) {
-        cout << "The source relation is empty" << endl;
+        std::cout << "The source relation is empty" << std::endl;
         exit(0);
     }
     if (s.size() == 0) {
-        cout << "The target relation is empty" << endl;
+        std::cout << "The target relation is empty" << std::endl;
         exit(0);
     }
     if (r[0].size() > s[0].size()) {
-        cout << "The number of attributes of source relation is bigger "
-             << "than the number of attributes of target relation" << endl;
+        std::cout << "The number of attributes of source relation is bigger "
+                  << "than the number of attributes of target relation" << std::endl;
         exit(0);
     }
 }
@@ -59,7 +60,7 @@ void computeMapping() {
 
     // compute mapping
     Mapping *mapping = new Mapping();
-    vector<pair<uint32_t, uint32_t>> f = mapping->SR2TR(r, s, satisfaction);
+    std::vector<std::pair<uint32_t, uint32_t>> f = mapping->SR2TR(r, s, satisfaction);
 
     mapping->print_results(colr, cols);
 }

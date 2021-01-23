@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Util.hpp"
+#include <cstdint>
+#include <vector>
 
 class Hungarian {
   public:

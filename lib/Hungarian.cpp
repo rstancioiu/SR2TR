@@ -1,5 +1,7 @@
 #include "Hungarian.hpp"
 
+#include <iostream>
+
 Hungarian::Hungarian(std::vector<std::vector<double>> &cost_matrix) {
     n = cost_matrix.size();
     m = 2 * n + 2;

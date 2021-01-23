@@ -2,7 +2,6 @@
 
 #include "ReadTextFile.hpp"
 #include "Relation.hpp"
-#include "Util.hpp"
 
 class Reader {
 
@@ -20,8 +19,9 @@ class Reader {
             @return a pair corresponding to the properties (a pair
        <relation,attributes>) of the source and target input
     */
-    std::pair<std::pair<Relation, vs>, std::pair<Relation, vs>> readFiles(const char *data_r,
-                                                                          const char *data_s);
+    std::pair<std::pair<Relation, std::vector<std::string>>,
+             std::pair<Relation, std::vector<std::string>>> readFiles(const char *data_r,
+                                                                      const char *data_s);
 
   private:
     /**
@@ -30,5 +30,5 @@ class Reader {
                         new_relation the relation that is filled from the input
        data attrName array of the name of the attributes
     */
-    void read(const char *data, Relation &new_relation, vs &attrName);
+    void read(const char *data, Relation &new_relation, std::vector<std::string> &attrName);
 };

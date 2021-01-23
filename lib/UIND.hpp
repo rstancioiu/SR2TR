@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Bitset.hpp"
-#include "Util.hpp"
 
 class UIND {
 
@@ -30,7 +29,7 @@ class UIND {
     /**
             Method used to print the state of the matrix
     */
-    void print_matrix_web(vs &colr, vs &cols,
+    void print_matrix_web(std::vector<std::string> &colr, std::vector<std::string> &cols,
                           std::vector<std::pair<uint32_t, uint32_t>> &f);
 
   private:

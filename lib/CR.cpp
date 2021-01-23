@@ -1,5 +1,9 @@
 #include "CR.hpp"
 
+#include <algorithm>
+#include <iomanip>
+#include <iostream>
+
 void CR::compute_canonical_adom(Relation &r, Relation &s) {
 
     canonicalAttrAdom = new std::vector<double>[n + m];

@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Util.hpp"
+#include <cstdint>
+#include <string>
+#include <vector>
 
 class Bitset {
 

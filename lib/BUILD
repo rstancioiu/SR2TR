@@ -6,8 +6,7 @@ cc_library(
         "Bitset.cpp"
     ],
     hdrs = [
-        "Bitset.hpp",
-        "Util.hpp"
+        "Bitset.hpp"
     ],
 )
 
@@ -40,8 +39,7 @@ cc_library(
         "Reader.hpp",
         "ReadTextFile.hpp",
         "Relation.hpp",
-        "UIND.hpp",
-        "Util.hpp"
+        "UIND.hpp"
     ],
     deps = [
         ":bitset"

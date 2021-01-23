@@ -1,7 +1,8 @@
+#pragma once
+
 #include "Bitset.hpp"
 #include "CR.hpp"
 #include "UIND.hpp"
-#include "Util.hpp"
 
 class Mapping {
   public:
@@ -22,12 +23,12 @@ class Mapping {
     /**
             Prints the results of the algorithm SR2TR
     */
-    void print_results(vs &colr, vs &cols);
+    void print_results(std::vector<std::string> &colr, std::vector<std::string> &cols);
 
     /**
             Prints the results of the algorithm SR2TR for web
     */
-    void print_results_web(vs &colr, vs &cols);
+    void print_results_web(std::vector<std::string> &colr, std::vector<std::string> &cols);
 
   private:
     /**

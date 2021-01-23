@@ -1,15 +1,15 @@
 #include "Reader.hpp"
 
-std::pair<std::pair<Relation, vs>, std::pair<Relation, vs>>
+std::pair<std::pair<Relation, std::vector<std::string>>, std::pair<Relation, std::vector<std::string>>>
 Reader::readFiles(const char *data_r, const char *data_s) {
     Relation r, s;
-    vs cr, cs;
+    std::vector<std::string> cr, cs;
     read(data_r, r, cr);
     read(data_s, s, cs);
     return make_pair(make_pair(r, cr), make_pair(s, cs));
 }
 
-void Reader::read(const char *data, Relation &relation, vs &attrName) {
+void Reader::read(const char *data, Relation &relation, std::vector<std::string> &attrName) {
 
     // search the column names in the input data
     char _cDelim = '\0';
@@ -25,7 +25,7 @@ void Reader::read(const char *data, Relation &relation, vs &attrName) {
     std::vector<bool> vis(attrName.size(), false);
 
     // array of names of columns without error measures ("err_A")
-    vs attrNameWithoutErrors;
+    std::vector<std::string> attrNameWithoutErrors;
 
     for (uint32_t i = 0; i < attrName.size(); ++i) {
         bool found = false;

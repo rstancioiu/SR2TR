@@ -1,6 +1,9 @@
 #include "Mapping.hpp"
 #include "Hungarian.hpp"
 
+#include <iostream>
+#include <vector>
+
 std::vector<std::pair<uint32_t, uint32_t>> Mapping::SR2TR(Relation &r, Relation &s,
                                                           int satisfaction) {
     if (r.size() == 0) {
@@ -48,7 +51,7 @@ Mapping::FindMatching(std::vector<std::vector<double>> &M) {
     return make_pair(cost, f);
 }
 
-void Mapping::print_results(vs &colr, vs &cols) {
+void Mapping::print_results(std::vector<std::string> &colr, std::vector<std::string> &cols) {
     cr->print_cr();
     uind->print_matrix();
 
@@ -68,7 +71,7 @@ void Mapping::print_results(vs &colr, vs &cols) {
     std::cout << std::endl;
 }
 
-void Mapping::print_results_web(vs &colr, vs &cols) {
+void Mapping::print_results_web(std::vector<std::string> &colr, std::vector<std::string> &cols) {
     cr->print_cr_web();
 
     uind->print_matrix_web(colr, cols, f);

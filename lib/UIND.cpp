@@ -1,5 +1,8 @@
 #include "UIND.hpp"
 
+#include <iostream>
+#include <iomanip>
+
 std::vector<std::vector<double>> UIND::MEM(std::vector<Bitset> &cr, uint32_t rsize,
                                            uint32_t ssize) {
 
@@ -59,7 +62,7 @@ void UIND::print_matrix() {
     std::cout << std::endl;
 }
 
-void UIND::print_matrix_web(vs &colr, vs &cols,
+void UIND::print_matrix_web(std::vector<std::string> &colr, std::vector<std::string> &cols,
                             std::vector<std::pair<uint32_t, uint32_t>> &f) {
     std::cout << "<p> MATRIX ERROR BETWEEN R AND S </p>"
               << "\n";

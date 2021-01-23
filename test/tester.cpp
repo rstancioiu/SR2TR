@@ -1,16 +1,15 @@
 #include "lib/ReadTextFile.hpp"
 #include "lib/Bitset.hpp"
-#include "lib/Util.hpp"
 
-using namespace std;
+#include <iostream>
 
 const char* data_r;
-vs col;
+std::vector<std::string> col;
 void read(const char* data_r);
 
 int main(int args, char* argv[]){
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
+	std::ios_base::sync_with_stdio(0);
+	std::cin.tie(0);
 	data_r = argv[1];
 	read(data_r);
 	return 0;
@@ -21,16 +20,16 @@ void read(const char* data_r)
 	char _cDelim = '\0';
 	ReadTextFile textfile(_cDelim);
 	if( ! textfile.openTextFile(data_r,col)) return;
-	vector<string> vstring;
-	ofstream target("target1.csv");
-	ofstream source("source1.csv");
+	std::vector<std::string> vstring;
+	std::ofstream target("target1.csv");
+	std::ofstream source("source1.csv");
 	target<<col[0];source<<col[0];
 	for(uint32_t i=1;i<col.size();++i){target<<","<<col[i];source<<","<<col[i];}
-	target<<endl;
-	source<<endl;
+	target<<std::endl;
+	source<<std::endl;
 	int p = 0;
 	while(textfile.getline(vstring)){
-		vector<double> values;
+		std::vector<double> values;
 		for(uint32_t i=0;i<vstring.size();++i)
 			values.push_back(atof(vstring[i].c_str()));
 		bool neg = false;
@@ -41,7 +40,7 @@ void read(const char* data_r)
 			source<<vstring[0];
 			for(uint32_t i=1;i<values.size();++i)
 				source<<","<<vstring[i];
-			source<<endl;
+			source<<std::endl;
 		}
 		else
 		{
@@ -49,7 +48,7 @@ void read(const char* data_r)
 			target<<vstring[0];
 			for(uint32_t i=1;i<values.size();++i)
 				target<<","<<vstring[i];
-			target<<endl;
+			target<<std::endl;
 		}
 	}
 	target.close();

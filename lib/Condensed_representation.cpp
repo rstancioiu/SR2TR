@@ -234,22 +234,3 @@ void Condensed_representation::print_cr() {
     }
     std::cout << std::endl;
 }
-
-void Condensed_representation::print_cr_web() {
-    std::cout << "<p> CONDENSED REPRESENTATION CR(r,s) </p>"
-              << "\n";
-    std::cout << "<table border=\"1\">"
-              << "\n";
-    for (uint32_t i = 0; i < adom.size(); ++i) {
-        std::cout << "<tr>\n";
-        std::cout << "<td>\n";
-        std::cout << "[" << adom[i].first << ";" << adom[i].second << "]\n";
-        std::cout << "</td>\n";
-        std::cout << "<td>\n";
-        std::cout << cr[i].toString() << "\n";
-        std::cout << "</td>\n";
-        std::cout << "</tr>\n";
-    }
-    std::cout << "</table>"
-              << "\n";
-}

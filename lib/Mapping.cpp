@@ -77,24 +77,3 @@ void Mapping::print_results(std::vector<std::string> &colr,
 
     std::cout << std::endl;
 }
-
-void Mapping::print_results_web(std::vector<std::string> &colr,
-                                std::vector<std::string> &cols) {
-    cr->print_cr_web();
-
-    uind->print_matrix_web(colr, cols, f);
-
-    std::cout << "<p> Cost of matching is equal to: " << cost << "</p>"
-              << "\n";
-    std::cout << "<p> Results of the mapping found: ";
-    // print mapping
-    std::cout << "<ul>\n";
-    for (uint32_t i = 0; i < f.size(); ++i) {
-        int x = f[i].first - 1;
-        int y = f[i].second - 1;
-        std::cout << "<li>"
-                  << "f[" << colr[x] << "] = " << cols[y] << "</li>\n";
-    }
-    std::cout << "</ul>\n";
-    std::cout << "</p>\n";
-}

@@ -23,12 +23,6 @@ class Condensed_representation {
                                       int satisfaction);
 
     /**
-            Shows the result of the preprocessing that can be inserted in a web
-       page
-    */
-    void print_cr_web();
-
-    /**
             Shows the result of the preprocessing
     */
     void print_cr();

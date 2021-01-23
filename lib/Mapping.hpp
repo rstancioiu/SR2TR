@@ -26,12 +26,6 @@ class Mapping {
     void print_results(std::vector<std::string> &colr,
                        std::vector<std::string> &cols);
 
-    /**
-            Prints the results of the algorithm SR2TR for web
-    */
-    void print_results_web(std::vector<std::string> &colr,
-                           std::vector<std::string> &cols);
-
    private:
     /**
             Method of finding the minimum weight matching from a matrix M

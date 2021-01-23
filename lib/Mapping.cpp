@@ -19,7 +19,7 @@ std::vector<std::pair<uint32_t, uint32_t>> Mapping::SR2TR(Relation &r,
         m = s[0].size();
     }
 
-    cr = new CR();
+    cr = new Condensed_representation();
     uind = new UIND();
 
     std::vector<Bitset> bitsets = cr->Preprocessing(r, s, satisfaction);

@@ -1,10 +1,11 @@
-#include "CR.hpp"
+#include "Condensed_representation.hpp"
 
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
 
-void CR::compute_canonical_adom(Relation &r, Relation &s) {
+void Condensed_representation::compute_canonical_adom(Relation &r,
+                                                      Relation &s) {
     canonicalAttrAdom = new std::vector<double>[n + m];
 
     std::vector<std::pair<double, int>> *aux =
@@ -39,7 +40,8 @@ void CR::compute_canonical_adom(Relation &r, Relation &s) {
     }
 }
 
-void CR::compute_classical_adom(Relation &r, Relation &s) {
+void Condensed_representation::compute_classical_adom(Relation &r,
+                                                      Relation &s) {
     classicalAttrAdom = new std::vector<Interval>[n + m];
     for (uint32_t i = 0; i < r.size(); ++i) {
         for (uint32_t j = 0; j < n; ++j) {
@@ -70,7 +72,8 @@ void CR::compute_classical_adom(Relation &r, Relation &s) {
     }
 }
 
-int CR::binary_search_canonical_low(double a, uint32_t attribute) {
+int Condensed_representation::binary_search_canonical_low(double a,
+                                                          uint32_t attribute) {
     uint32_t low = 0;
     uint32_t high = canonicalAttrAdom[attribute].size();
     while (low + 1 < high) {
@@ -85,7 +88,8 @@ int CR::binary_search_canonical_low(double a, uint32_t attribute) {
     return low;
 }
 
-int CR::binary_search_canonical_high(double a, uint32_t attribute) {
+int Condensed_representation::binary_search_canonical_high(double a,
+                                                           uint32_t attribute) {
     uint32_t low = -1;
     uint32_t high = canonicalAttrAdom[attribute].size();
     while (low + 1 < high) {
@@ -102,7 +106,8 @@ int CR::binary_search_canonical_high(double a, uint32_t attribute) {
     return high;
 }
 
-int CR::binary_search_classical(double a, uint32_t attribute) {
+int Condensed_representation::binary_search_classical(double a,
+                                                      uint32_t attribute) {
     uint32_t low = 0;
     uint32_t high = classicalAttrAdom[attribute].size();
     while (low + 1 < high) {
@@ -116,7 +121,8 @@ int CR::binary_search_classical(double a, uint32_t attribute) {
     return low;
 }
 
-bool CR::check_inclusion(Interval i, uint32_t attribute, int satisfaction) {
+bool Condensed_representation::check_inclusion(Interval i, uint32_t attribute,
+                                               int satisfaction) {
     double a = i.first;
     double b = i.second;
     if (satisfaction == 2) {
@@ -154,7 +160,8 @@ bool CR::check_inclusion(Interval i, uint32_t attribute, int satisfaction) {
     return false;
 }
 
-void CR::init(Relation &r, Relation &s, int satisfaction) {
+void Condensed_representation::init(Relation &r, Relation &s,
+                                    int satisfaction) {
     if (r.size() == 0) {
         n = 0;
     } else {
@@ -194,8 +201,9 @@ void CR::init(Relation &r, Relation &s, int satisfaction) {
 }
 
 // Maps the tables r and s into an array of Bitsets
-std::vector<Bitset> CR::Preprocessing(Relation &r, Relation &s,
-                                      int satisfaction) {
+std::vector<Bitset> Condensed_representation::Preprocessing(Relation &r,
+                                                            Relation &s,
+                                                            int satisfaction) {
     init(r, s, satisfaction);
 
     uint32_t p = n + m;
@@ -213,7 +221,7 @@ std::vector<Bitset> CR::Preprocessing(Relation &r, Relation &s,
     return cr;
 }
 
-void CR::print_cr() {
+void Condensed_representation::print_cr() {
     std::cout << "--------------------------------------------------"
               << std::endl;
     std::cout << "        CONDENSED REPRESENTATION CR(r,s)          "
@@ -227,7 +235,7 @@ void CR::print_cr() {
     std::cout << std::endl;
 }
 
-void CR::print_cr_web() {
+void Condensed_representation::print_cr_web() {
     std::cout << "<p> CONDENSED REPRESENTATION CR(r,s) </p>"
               << "\n";
     std::cout << "<table border=\"1\">"

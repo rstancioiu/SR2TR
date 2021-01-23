@@ -24,7 +24,7 @@ cc_test(
 cc_library(
     name = "SR2TR",
     srcs = [
-        "CR.cpp",
+        "Condensed_representation.cpp",
         "Hungarian.cpp",
         "Mapping.cpp",
         "Reader.cpp",
@@ -33,7 +33,7 @@ cc_library(
     ],
     hdrs = [
         "Bitset.hpp",
-        "CR.hpp",
+        "Condensed_representation.hpp",
         "Hungarian.hpp",
         "Mapping.hpp",
         "Reader.hpp",

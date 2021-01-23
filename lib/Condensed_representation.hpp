@@ -3,12 +3,12 @@
 #include "Bitset.hpp"
 #include "Relation.hpp"
 
-class CR {
+class Condensed_representation {
    public:
     /**
             Default Constructor
     */
-    CR(){};
+    Condensed_representation(){};
 
     /**
             Computes the condensed representation (an array of binary relations)

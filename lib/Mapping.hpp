@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Bitset.hpp"
-#include "CR.hpp"
+#include "Condensed_representation.hpp"
 #include "UIND.hpp"
 
 class Mapping {
@@ -50,7 +50,7 @@ class Mapping {
     // Number of attributes of S
     uint32_t m;
 
-    CR *cr;
+    Condensed_representation *cr;
     UIND *uind;
 
     std::vector<std::pair<uint32_t, uint32_t>> f;

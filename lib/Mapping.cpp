@@ -1,8 +1,8 @@
 #include "Mapping.hpp"
 #include "Hungarian.hpp"
 
-vector<pair<uint32_t, uint32_t>> Mapping::SR2TR(Relation &r, Relation &s,
-                                                int satisfaction) {
+std::vector<std::pair<uint32_t, uint32_t>> Mapping::SR2TR(Relation &r, Relation &s,
+                                                          int satisfaction) {
     if (r.size() == 0) {
         n = 0;
     } else {
@@ -17,11 +17,11 @@ vector<pair<uint32_t, uint32_t>> Mapping::SR2TR(Relation &r, Relation &s,
     cr = new CR();
     uind = new UIND();
 
-    vector<Bitset> bitsets = cr->Preprocessing(r, s, satisfaction);
+    std::vector<Bitset> bitsets = cr->Preprocessing(r, s, satisfaction);
 
-    vector<vector<double>> M = uind->MEM(bitsets, n, m);
+    std::vector<std::vector<double>> M = uind->MEM(bitsets, n, m);
 
-    pair<double, vector<pair<uint32_t, uint32_t>>> matching = FindMatching(M);
+    std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> matching = FindMatching(M);
 
     cost = matching.first;
 
@@ -30,19 +30,19 @@ vector<pair<uint32_t, uint32_t>> Mapping::SR2TR(Relation &r, Relation &s,
     return f;
 }
 
-pair<double, vector<pair<uint32_t, uint32_t>>>
-Mapping::FindMatching(vector<vector<double>> &M) {
+std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>>
+Mapping::FindMatching(std::vector<std::vector<double>> &M) {
 
     Hungarian *hungarian = new Hungarian(M);
 
-    pair<double, vector<pair<uint32_t, uint32_t>>> res =
+    std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> res =
         hungarian->compute_hungarian();
-    vector<pair<uint32_t, uint32_t>> f;
+    std::vector<std::pair<uint32_t, uint32_t>> f;
 
     double cost = res.first;
 
     for (uint32_t i = 0; i < n; ++i) {
-        f.push_back(make_pair(res.second[i].first, res.second[i].second - m));
+        f.push_back(std::make_pair(res.second[i].first, res.second[i].second - m));
     }
 
     return make_pair(cost, f);
@@ -52,20 +52,20 @@ void Mapping::print_results(vs &colr, vs &cols) {
     cr->print_cr();
     uind->print_matrix();
 
-    cout << "--------------------------------------------------" << endl;
-    cout << "        RESULTS OF THE MATCHING BETWEEN R AND S   " << endl;
-    cout << "--------------------------------------------------" << endl;
+    std::cout << "--------------------------------------------------" << std::endl;
+    std::cout << "        RESULTS OF THE MATCHING BETWEEN R AND S   " << std::endl;
+    std::cout << "--------------------------------------------------" << std::endl;
 
-    cout << "Cost of matching:   " << cost << endl;
+    std::cout << "Cost of matching:   " << cost << std::endl;
 
     // print mapping
     for (uint32_t i = 0; i < f.size(); ++i) {
         int x = f[i].first - 1;
         int y = f[i].second - 1;
-        cout << "f[" << colr[x] << "] = " << cols[y] << endl;
+        std::cout << "f[" << colr[x] << "] = " << cols[y] << std::endl;
     }
 
-    cout << endl;
+    std::cout << std::endl;
 }
 
 void Mapping::print_results_web(vs &colr, vs &cols) {
@@ -73,17 +73,17 @@ void Mapping::print_results_web(vs &colr, vs &cols) {
 
     uind->print_matrix_web(colr, cols, f);
 
-    cout << "<p> Cost of matching is equal to: " << cost << "</p>"
+    std::cout << "<p> Cost of matching is equal to: " << cost << "</p>"
          << "\n";
-    cout << "<p> Results of the mapping found: ";
+    std::cout << "<p> Results of the mapping found: ";
     // print mapping
-    cout << "<ul>\n";
+    std::cout << "<ul>\n";
     for (uint32_t i = 0; i < f.size(); ++i) {
         int x = f[i].first - 1;
         int y = f[i].second - 1;
-        cout << "<li>"
-             << "f[" << colr[x] << "] = " << cols[y] << "</li>\n";
+        std::cout << "<li>"
+                  << "f[" << colr[x] << "] = " << cols[y] << "</li>\n";
     }
-    cout << "</ul>\n";
-    cout << "</p>\n";
+    std::cout << "</ul>\n";
+    std::cout << "</p>\n";
 }

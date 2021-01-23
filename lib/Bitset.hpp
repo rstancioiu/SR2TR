@@ -13,7 +13,7 @@ class Bitset {
     /**
             Constructor from an array of bits (booleans)
     */
-    Bitset(vector<bool> &new_bitset);
+    Bitset(std::vector<bool> &new_bitset);
 
     /**
             Constructor of copy
@@ -72,7 +72,7 @@ class Bitset {
             Transforms the sequence of bits into a string of characters
             @return the corresponding string
     */
-    string toString();
+    std::string toString();
 
     /**
             Operator to compare two bitsets
@@ -99,5 +99,5 @@ class Bitset {
     static const unsigned int DEFAULT_SIZE = 256;
 
     // Array that corresponds to the sequence of the bitset
-    vector<bool> array = vector<bool>(DEFAULT_SIZE, 0);
+    std::vector<bool> array = std::vector<bool>(DEFAULT_SIZE, 0);
 };

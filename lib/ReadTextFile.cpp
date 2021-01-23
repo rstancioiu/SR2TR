@@ -33,26 +33,26 @@ ReadTextFile::~ReadTextFile() {
     closeTextFile();
 }
 
-inline bool ReadTextFile::emptyLine(const string &str) {
-    for (string::const_iterator it = str.begin(); it != str.end(); ++it)
+inline bool ReadTextFile::emptyLine(const std::string &str) {
+    for (std::string::const_iterator it = str.begin(); it != str.end(); ++it)
         if (*it >= ' ')
             return false;
 
     return true;
 }
 
-inline void ReadTextFile::splitline(const string &str, char cDelim,
-                                    vector<string> &vstring) const {
+inline void ReadTextFile::splitline(const std::string &str, char cDelim,
+                                    std::vector<std::string> &vstring) const {
     vstring.clear();
     // StringTokenizer...
-    for (size_t posBegin = 0, posEnd = 0; posEnd != string::npos;
+    for (size_t posBegin = 0, posEnd = 0; posEnd != std::string::npos;
          posBegin = posEnd + 1) {
         posEnd = str.find_first_of(cDelim, posBegin);
         while (str[posBegin] == ' ') {
             ++posBegin;
         }
 
-        size_t posEnd2 = posEnd == string::npos ? str.length() - 1 : posEnd - 1;
+        size_t posEnd2 = posEnd == std::string::npos ? str.length() - 1 : posEnd - 1;
 
         while (posEnd2 > posBegin && str[posEnd2] == ' ') {
             --posEnd2;
@@ -64,8 +64,8 @@ inline void ReadTextFile::splitline(const string &str, char cDelim,
 inline void ReadTextFile::computeNbLine(const char *szFileName) {
     _uNbLine = 0;
 
-    string str;
-    ifstream ifs;
+    std::string str;
+    std::ifstream ifs;
     ifs.open(szFileName);
     if (!_ifs.good()) {
         return;
@@ -81,7 +81,7 @@ inline void ReadTextFile::computeNbLine(const char *szFileName) {
     }
 }
 
-inline bool ReadTextFile::readline(string &str) {
+inline bool ReadTextFile::readline(std::string &str) {
     str.clear();
 
     while (true) {
@@ -108,7 +108,7 @@ inline bool ReadTextFile::readline(string &str) {
 }
 
 bool ReadTextFile::openTextFile(const char *szFileName,
-                                vector<string> &vstring) {
+                                std::vector<std::string> &vstring) {
     // Au cas ou le fichier serait ouvert
     closeTextFile();
 
@@ -124,7 +124,7 @@ bool ReadTextFile::openTextFile(const char *szFileName,
         getline(vstring, false);
     } else {
         // On recherche le delimiteur
-        string line;
+        std::string line;
         if (readline(line)) {
             char cDelimTest[] = {',', ';', '\t'};
             unsigned int delimTested = 0;
@@ -161,8 +161,8 @@ void ReadTextFile::closeTextFile() {
         _ifs.close();
 }
 
-bool ReadTextFile::getline(vector<string> &vstring, bool strick /*= true*/) {
-    string str;
+bool ReadTextFile::getline(std::vector<std::string> &vstring, bool strick /*= true*/) {
+    std::string str;
 
     if (!readline(str)) {
         return false;

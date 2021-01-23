@@ -1,6 +1,6 @@
 #include "Reader.hpp"
 
-pair<pair<Relation, vs>, pair<Relation, vs>>
+std::pair<std::pair<Relation, vs>, std::pair<Relation, vs>>
 Reader::readFiles(const char *data_r, const char *data_s) {
     Relation r, s;
     vs cr, cs;
@@ -19,10 +19,10 @@ void Reader::read(const char *data, Relation &relation, vs &attrName) {
 
     // array used to find the error measurement associated to a certain
     // parameter i.e. if A is an attribute, search for err_A
-    vector<pair<int, int>> aux;
+    std::vector<std::pair<int, int>> aux;
 
     // array used to check if an attribute was already taken into consideration
-    vector<bool> vis(attrName.size(), false);
+    std::vector<bool> vis(attrName.size(), false);
 
     // array of names of columns without error measures ("err_A")
     vs attrNameWithoutErrors;
@@ -31,12 +31,12 @@ void Reader::read(const char *data, Relation &relation, vs &attrName) {
         bool found = false;
 
         // we check if the error is in the array of attributes
-        string s = "err_" + attrName[i];
+        std::string s = "err_" + attrName[i];
 
         for (uint32_t j = 0; j < attrName.size(); ++j) {
             if (attrName[j] == s) {
                 found = true;
-                aux.push_back(make_pair(i, j));
+                aux.push_back(std::make_pair(i, j));
                 attrNameWithoutErrors.push_back(attrName[i]);
                 vis[i] = true;
                 vis[j] = true;
@@ -45,16 +45,16 @@ void Reader::read(const char *data, Relation &relation, vs &attrName) {
         }
         // if it is not the case
         if (!found && !vis[i])
-            aux.push_back(make_pair(i, -1)),
+            aux.push_back(std::make_pair(i, -1)),
                 vis[i] = true, attrNameWithoutErrors.push_back(attrName[i]);
     }
 
     attrName = attrNameWithoutErrors;
 
     // generate the relation
-    vector<string> vstring;
+    std::vector<std::string> vstring;
     while (textFile.getline(vstring)) {
-        vector<Interval> new_attribute;
+        std::vector<Interval> new_attribute;
         for (uint32_t i = 0; i < aux.size(); ++i) {
             double value;
             sscanf(vstring[aux[i].first].c_str(), "%lf", &value);

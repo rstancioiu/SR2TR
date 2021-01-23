@@ -19,8 +19,8 @@ class UIND {
                        sszie size of the target relation s
             @return 2D-array corresponding to the matrix of error measures
     */
-    vector<vector<double>> MEM(vector<Bitset> &cr, uint32_t rsize,
-                               uint32_t ssize);
+    std::vector<std::vector<double>> MEM(std::vector<Bitset> &cr, uint32_t rsize,
+                                         uint32_t ssize);
 
     /**
             Method used to print the state of the matrix
@@ -31,8 +31,8 @@ class UIND {
             Method used to print the state of the matrix
     */
     void print_matrix_web(vs &colr, vs &cols,
-                          vector<pair<uint32_t, uint32_t>> &f);
+                          std::vector<std::pair<uint32_t, uint32_t>> &f);
 
   private:
-    vector<vector<double>> M;
+    std::vector<std::vector<double>> M;
 };

@@ -12,10 +12,8 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
-
-typedef pair<double, double> Interval;
-typedef vector<vector<Interval>> Relation;
-typedef vector<vector<int>> vvi;
-typedef vector<string> vs;
-typedef vector<bool> vb;
+using Interval = std::pair<double, double>;
+using Relation = std::vector<std::vector<Interval>>;
+using vvi = std::vector<std::vector<int>>;
+using vs = std::vector<std::string>;
+using vb = std::vector<bool>;

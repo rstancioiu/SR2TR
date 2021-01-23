@@ -19,7 +19,7 @@ class Reader {
             @return a pair corresponding to the properties (a pair
        <relation,attributes>) of the source and target input
     */
-    pair<pair<Relation, vs>, pair<Relation, vs>> readFiles(const char *data_r,
+    std::pair<std::pair<Relation, vs>, std::pair<Relation, vs>> readFiles(const char *data_r,
                                                            const char *data_s);
 
   private:

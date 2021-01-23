@@ -2,20 +2,20 @@
 
 void CR::compute_canonical_adom(Relation &r, Relation &s) {
 
-    canonicalAttrAdom = new vector<double>[n + m];
+    canonicalAttrAdom = new std::vector<double>[n + m];
 
-    vector<pair<double, int>> *aux = new vector<pair<double, int>>[n + m];
+    std::vector<std::pair<double, int>> *aux = new std::vector<std::pair<double, int>>[n + m];
 
     for (uint32_t i = 0; i < r.size(); ++i) {
         for (uint32_t j = 0; j < n; ++j) {
-            aux[j].push_back(make_pair(r[i][j].first, -1));
-            aux[j].push_back(make_pair(r[i][j].second, 1));
+            aux[j].push_back(std::make_pair(r[i][j].first, -1));
+            aux[j].push_back(std::make_pair(r[i][j].second, 1));
         }
     }
     for (uint32_t i = 0; i < s.size(); ++i) {
         for (uint32_t j = 0; j < m; ++j) {
-            aux[j + n].push_back(make_pair(s[i][j].first, -1));
-            aux[j + n].push_back(make_pair(s[i][j].second, 1));
+            aux[j + n].push_back(std::make_pair(s[i][j].first, -1));
+            aux[j + n].push_back(std::make_pair(s[i][j].second, 1));
         }
     }
     for (uint32_t i = 0; i < m + n; ++i) {
@@ -37,7 +37,7 @@ void CR::compute_canonical_adom(Relation &r, Relation &s) {
 
 void CR::compute_classical_adom(Relation &r, Relation &s) {
 
-    classicalAttrAdom = new vector<Interval>[n + m];
+    classicalAttrAdom = new std::vector<Interval>[n + m];
     for (uint32_t i = 0; i < r.size(); ++i) {
         for (uint32_t j = 0; j < n; ++j) {
             classicalAttrAdom[j].push_back(r[i][j]);
@@ -49,7 +49,7 @@ void CR::compute_classical_adom(Relation &r, Relation &s) {
         }
     }
     for (uint32_t i = 0; i < n + m; ++i) {
-        sort(classicalAttrAdom[i].begin(), classicalAttrAdom[i].end());
+        std::sort(classicalAttrAdom[i].begin(), classicalAttrAdom[i].end());
         uint32_t k = 0;
         for (uint32_t j = 1; j < classicalAttrAdom[i].size(); ++j) {
             if (classicalAttrAdom[i][j].first !=
@@ -58,8 +58,8 @@ void CR::compute_classical_adom(Relation &r, Relation &s) {
                 classicalAttrAdom[i][k] = classicalAttrAdom[i][j];
             } else {
                 classicalAttrAdom[i][k].second =
-                    max(classicalAttrAdom[i][k].second,
-                        classicalAttrAdom[i][j].second);
+                    std::max(classicalAttrAdom[i][k].second,
+                             classicalAttrAdom[i][j].second);
             }
         }
         k++;
@@ -180,7 +180,7 @@ void CR::init(Relation &r, Relation &s, int satisfaction) {
             adom.push_back(s[i][j]);
         }
     }
-    sort(adom.begin(), adom.end());
+    std::sort(adom.begin(), adom.end());
 
     // remove duplicates
     uint32_t k = 1;
@@ -194,13 +194,13 @@ void CR::init(Relation &r, Relation &s, int satisfaction) {
 }
 
 // Maps the tables r and s into an array of Bitsets
-vector<Bitset> CR::Preprocessing(Relation &r, Relation &s, int satisfaction) {
+std::vector<Bitset> CR::Preprocessing(Relation &r, Relation &s, int satisfaction) {
     init(r, s, satisfaction);
 
     uint32_t p = n + m;
     for (uint32_t i = 0; i < adom.size(); ++i) {
         Interval current_interval = adom[i];
-        vector<bool> array(p, false);
+        std::vector<bool> array(p, false);
         for (uint32_t j = 0; j < p; ++j) {
             if (check_inclusion(current_interval, j, satisfaction)) {
                 array[j] = true;
@@ -214,32 +214,32 @@ vector<Bitset> CR::Preprocessing(Relation &r, Relation &s, int satisfaction) {
 
 void CR::print_cr() {
 
-    cout << "--------------------------------------------------" << endl;
-    cout << "        CONDENSED REPRESENTATION CR(r,s)          " << endl;
-    cout << "--------------------------------------------------" << endl;
+    std::cout << "--------------------------------------------------" << std::endl;
+    std::cout << "        CONDENSED REPRESENTATION CR(r,s)          " << std::endl;
+    std::cout << "--------------------------------------------------" << std::endl;
     for (uint32_t i = 0; i < adom.size(); ++i) {
-        cout << "[" << setw(4) << adom[i].first << ";" << setw(5)
-             << adom[i].second << "] || " << cr[i].toString() << endl;
+        std::cout << "[" << std::setw(4) << adom[i].first << ";" << std::setw(5)
+                  << adom[i].second << "] || " << cr[i].toString() << std::endl;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 void CR::print_cr_web() {
 
-    cout << "<p> CONDENSED REPRESENTATION CR(r,s) </p>"
-         << "\n";
-    cout << "<table border=\"1\">"
-         << "\n";
+    std::cout << "<p> CONDENSED REPRESENTATION CR(r,s) </p>"
+              << "\n";
+    std::cout << "<table border=\"1\">"
+              << "\n";
     for (uint32_t i = 0; i < adom.size(); ++i) {
-        cout << "<tr>\n";
-        cout << "<td>\n";
-        cout << "[" << adom[i].first << ";" << adom[i].second << "]\n";
-        cout << "</td>\n";
-        cout << "<td>\n";
-        cout << cr[i].toString() << "\n";
-        cout << "</td>\n";
-        cout << "</tr>\n";
+        std::cout << "<tr>\n";
+        std::cout << "<td>\n";
+        std::cout << "[" << adom[i].first << ";" << adom[i].second << "]\n";
+        std::cout << "</td>\n";
+        std::cout << "<td>\n";
+        std::cout << cr[i].toString() << "\n";
+        std::cout << "</td>\n";
+        std::cout << "</tr>\n";
     }
-    cout << "</table>"
-         << "\n";
+    std::cout << "</table>"
+              << "\n";
 }

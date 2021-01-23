@@ -11,14 +11,14 @@ class Hungarian {
             In case that the matrix is not n*n, then the matrix is extended
             with rows composed by zero.
     */
-    Hungarian(vector<vector<double>> &cost_matrix);
+    Hungarian(std::vector<std::vector<double>> &cost_matrix);
 
     /**
             Computes the hungarian algorithm for the graph formed
             @return a pair composed of the minimum cost of the matching
                             and a vector corresponding to the matching
     */
-    pair<double, vector<pair<uint32_t, uint32_t>>> compute_hungarian();
+    std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> compute_hungarian();
 
   private:
     /**
@@ -94,7 +94,7 @@ class Hungarian {
     double **cost;
 
     // the structure of the bipartite graph
-    vector<uint32_t> *g;
+    std::vector<uint32_t> *g;
 
     // array of booleans that checks whether or not a vertex was visited
     // during a DFS

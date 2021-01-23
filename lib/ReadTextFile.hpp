@@ -28,8 +28,8 @@ class ReadTextFile {
     char _cDelim;
     size_t _uNbCol;
     size_t _uNbLine;
-    ifstream _ifs;
-    vector<string> colNames;
+    std::ifstream _ifs;
+    std::vector<std::string> colNames;
 
     void setDelim(const char cDelim) {
         _cDelim = cDelim;
@@ -42,11 +42,11 @@ class ReadTextFile {
     }
 
     void computeNbLine(const char *szFileName);
-    bool emptyLine(const string &str);
+    bool emptyLine(const std::string &str);
 
-    void splitline(const string &str, char cDelim,
-                   vector<string> &vstring) const;
-    bool readline(string &str);
+    void splitline(const std::string &str, char cDelim,
+                   std::vector<std::string> &vstring) const;
+    bool readline(std::string &str);
 
   public:
     ReadTextFile(char cDelim = '\0');
@@ -59,10 +59,10 @@ class ReadTextFile {
         return _uNbCol;
     }
 
-    bool openTextFile(const char *szFileName, vector<string> &vstring);
+    bool openTextFile(const char *szFileName, std::vector<std::string> &vstring);
     void closeTextFile();
 
-    bool getline(vector<string> &vstring, bool strict = true);
+    bool getline(std::vector<std::string> &vstring, bool strict = true);
 };
 
 #endif // __READTEXTFILE_H__

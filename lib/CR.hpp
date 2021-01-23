@@ -18,7 +18,7 @@ class CR {
             @return an array of binary relations, i.e. the condensed
        representation
     */
-    vector<Bitset> Preprocessing(Relation &r, Relation &s, int satisfaction);
+    std::vector<Bitset> Preprocessing(Relation &r, Relation &s, int satisfaction);
 
     /**
             Shows the result of the preprocessing that can be inserted in a web
@@ -96,12 +96,12 @@ class CR {
     */
     void init(Relation &r, Relation &s, int satisfaction);
 
-    vector<double> *canonicalAttrAdom;
-    vector<Interval> *classicalAttrAdom;
+    std::vector<double> *canonicalAttrAdom;
+    std::vector<Interval> *classicalAttrAdom;
 
-    vector<Interval> adom;
+    std::vector<Interval> adom;
 
     uint32_t n, m;
 
-    vector<Bitset> cr;
+    std::vector<Bitset> cr;
 };

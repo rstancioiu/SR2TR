@@ -1,11 +1,11 @@
 #include "Hungarian.hpp"
 
-Hungarian::Hungarian(vector<vector<double>> &cost_matrix) {
+Hungarian::Hungarian(std::vector<std::vector<double>> &cost_matrix) {
     n = cost_matrix.size();
     m = 2 * n + 2;
     cost = new double *[n + 1];
     init_cost = new double *[n + 1];
-    g = new vector<uint32_t>[m];
+    g = new std::vector<uint32_t>[m];
     vis = new bool[m];
     cover = new bool[m];
     l = new uint32_t[m];
@@ -18,8 +18,8 @@ Hungarian::Hungarian(vector<vector<double>> &cost_matrix) {
             init_cost[i][j] = cost_matrix[i - 1][j - 1];
         }
     }
-    fill(l, l + m, 0);
-    fill(r, r + m, 0);
+    std::fill(l, l + m, 0);
+    std::fill(r, r + m, 0);
 }
 
 // used to compute an augmenting path for Hopcroft-Karp algorithm
@@ -49,7 +49,7 @@ bool Hungarian::hopcroft_karp() {
     bool change = true;
     while (change) {
         change = false;
-        fill(vis, vis + n + 1, false);
+        std::fill(vis, vis + n + 1, false);
         for (uint32_t i = 1; i <= n; ++i) {
             if (!l[i]) {
                 change |= dfs_hopcroft_karp(i);
@@ -77,7 +77,7 @@ void Hungarian::dfs_minimum_set_cover(uint32_t v) {
 }
 
 void Hungarian::minimum_set_cover() {
-    fill(cover, cover + 2 * n + 1, 0); // set denoted with Z
+    std::fill(cover, cover + 2 * n + 1, 0); // set denoted with Z
     for (uint32_t i = 1; i <= n; ++i) {
         if (!l[i]) {
             dfs_minimum_set_cover(i);
@@ -106,7 +106,7 @@ void Hungarian::row_minima() {
     for (uint32_t i = 1; i <= n; ++i) {
         double minimum = 1e15;
         for (uint32_t j = 1; j <= n; ++j) {
-            minimum = min(minimum, cost[i][j]);
+            minimum = std::min(minimum, cost[i][j]);
         }
         for (uint32_t j = 1; j <= n; ++j) {
             cost[i][j] -= minimum;
@@ -118,10 +118,10 @@ void Hungarian::row_minima() {
 }
 
 void Hungarian::col_minima() {
-    vector<double> minimum(n + 1, 1e15);
+    std::vector<double> minimum(n + 1, 1e15);
     for (uint32_t i = 1; i <= n; ++i) {
         for (uint32_t j = 1; j <= n; ++j) {
-            minimum[j] = min(minimum[j], cost[i][j]);
+            minimum[j] = std::min(minimum[j], cost[i][j]);
         }
     }
     for (uint32_t i = 1; i <= n; ++i) {
@@ -164,14 +164,14 @@ void Hungarian::additional_zeros() {
 void Hungarian::print_matrix() {
     for (uint32_t i = 1; i <= n; ++i) {
         for (uint32_t j = 1; j <= n; ++j) {
-            cout << cost[i][j] << " ";
+            std::cout << cost[i][j] << " ";
         }
-        cout << endl;
+        std::cout << std::endl;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
-pair<double, vector<pair<uint32_t, uint32_t>>> Hungarian::compute_hungarian() {
+std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> Hungarian::compute_hungarian() {
     // step 1
     row_minima();
     // step 2
@@ -184,10 +184,10 @@ pair<double, vector<pair<uint32_t, uint32_t>>> Hungarian::compute_hungarian() {
     }
 
     // step 5 - prepare matching and return minimum_cost
-    vector<pair<uint32_t, uint32_t>> matching;
+    std::vector<std::pair<uint32_t, uint32_t>> matching;
     double minimum_cost = 0;
     for (uint32_t i = 1; i <= n; ++i) {
-        matching.push_back(make_pair(i, l[i]));
+        matching.push_back(std::make_pair(i, l[i]));
         minimum_cost += init_cost[i][l[i] - n];
     }
     return make_pair(minimum_cost, matching);

@@ -9,7 +9,7 @@ Bitset::~Bitset() {
     array.clear();
 }
 
-Bitset::Bitset(vector<bool> &new_bitset) {
+Bitset::Bitset(std::vector<bool> &new_bitset) {
     array = new_bitset;
 }
 
@@ -72,8 +72,8 @@ void Bitset::resize(uint32_t n) {
     array.resize(n);
 }
 
-string Bitset::toString() {
-    string s = "";
+std::string Bitset::toString() {
+    std::string s = "";
     for (uint32_t i = 0; i < array.size(); ++i) {
         if (array[i])
             s += '1';

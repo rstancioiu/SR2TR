@@ -16,8 +16,8 @@ class Mapping {
                        s the target relation
                        satisfaction the inclusion metric chosen
     */
-    vector<pair<uint32_t, uint32_t>> SR2TR(Relation &r, Relation &s,
-                                           int satisfaction);
+    std::vector<std::pair<uint32_t, uint32_t>> SR2TR(Relation &r, Relation &s,
+                                                     int satisfaction);
 
     /**
             Prints the results of the algorithm SR2TR
@@ -37,8 +37,8 @@ class Mapping {
                             the minimum cost of the matching
                         an array of pairs of matched attributes
     */
-    pair<double, vector<pair<uint32_t, uint32_t>>>
-    FindMatching(vector<vector<double>> &M);
+    std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>>
+    FindMatching(std::vector<std::vector<double>> &M);
 
   private:
     // Number of attributes of R
@@ -50,6 +50,6 @@ class Mapping {
     CR *cr;
     UIND *uind;
 
-    vector<pair<uint32_t, uint32_t>> f;
+    std::vector<std::pair<uint32_t, uint32_t>> f;
     double cost;
 };

@@ -5,9 +5,8 @@
 
 #include "Hungarian.hpp"
 
-std::vector<std::pair<uint32_t, uint32_t>> Mapping::SR2TR(Relation &r,
-                                                          Relation &s,
-                                                          int satisfaction) {
+std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> Mapping::SR2TR(
+    Relation &r, Relation &s, int satisfaction) {
     if (r.size() == 0) {
         n = 0;
     } else {
@@ -20,20 +19,19 @@ std::vector<std::pair<uint32_t, uint32_t>> Mapping::SR2TR(Relation &r,
     }
 
     cr = new Condensed_representation();
-    uind = new UIND();
+    unary_inclusion_dependency = new Unary_inclusion_dependency();
 
     std::vector<Bitset> bitsets = cr->Preprocessing(r, s, satisfaction);
 
-    std::vector<std::vector<double>> M = uind->MEM(bitsets, n, m);
+    std::vector<std::vector<double>> M =
+        unary_inclusion_dependency->MEM(bitsets, n, m);
 
     std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> matching =
         FindMatching(M);
 
     cost = matching.first;
-
     f = matching.second;
-
-    return f;
+    return matching;
 }
 
 std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>>
@@ -57,7 +55,7 @@ Mapping::FindMatching(std::vector<std::vector<double>> &M) {
 void Mapping::print_results(std::vector<std::string> &colr,
                             std::vector<std::string> &cols) {
     cr->print_cr();
-    uind->print_matrix();
+    unary_inclusion_dependency->print_matrix();
 
     std::cout << "--------------------------------------------------"
               << std::endl;

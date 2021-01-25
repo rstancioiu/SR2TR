@@ -29,7 +29,7 @@ cc_library(
         "Mapping.cpp",
         "Reader.cpp",
         "ReadTextFile.cpp",
-        "UIND.cpp"
+        "Unary_inclusion_dependency.cpp"
     ],
     hdrs = [
         "Bitset.hpp",
@@ -39,7 +39,7 @@ cc_library(
         "Reader.hpp",
         "ReadTextFile.hpp",
         "Relation.hpp",
-        "UIND.hpp"
+        "Unary_inclusion_dependency.hpp"
     ],
     deps = [
         ":bitset"

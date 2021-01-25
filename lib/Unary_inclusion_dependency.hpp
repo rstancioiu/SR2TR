@@ -2,12 +2,12 @@
 
 #include "Bitset.hpp"
 
-class UIND {
+class Unary_inclusion_dependency {
    public:
     /**
             Default constructor
     */
-    UIND(){};
+    Unary_inclusion_dependency(){};
 
     /**
             Generate the matrix of error measures ( approximate unary inclusion
@@ -24,13 +24,6 @@ class UIND {
             Method used to print the state of the matrix
     */
     void print_matrix();
-
-    /**
-            Method used to print the state of the matrix
-    */
-    void print_matrix_web(std::vector<std::string> &colr,
-                          std::vector<std::string> &cols,
-                          std::vector<std::pair<uint32_t, uint32_t>> &f);
 
    private:
     std::vector<std::vector<double>> M;

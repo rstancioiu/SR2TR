@@ -17,6 +17,7 @@ void readFiles();
 int main(int argc, char *argv[]) {
     data_r = argv[1];
     data_s = argv[2];
+    std::cout << data_r << " " << data_s << std::endl;
     std::cout << "Please choose the satisfaction metric (type 1 or 2) :"
               << std::endl;
     std::cin >> satisfaction;
@@ -64,7 +65,7 @@ void computeMapping() {
     // compute mapping
     Mapping *mapping = new Mapping();
     std::vector<std::pair<uint32_t, uint32_t>> f =
-        mapping->SR2TR(r, s, satisfaction);
+        mapping->SR2TR(r, s, satisfaction).second;
 
     mapping->print_results(colr, cols);
 }

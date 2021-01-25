@@ -2,7 +2,7 @@
 
 #include "Bitset.hpp"
 #include "Condensed_representation.hpp"
-#include "UIND.hpp"
+#include "Unary_inclusion_dependency.hpp"
 
 class Mapping {
    public:
@@ -17,8 +17,8 @@ class Mapping {
                        s the target relation
                        satisfaction the inclusion metric chosen
     */
-    std::vector<std::pair<uint32_t, uint32_t>> SR2TR(Relation &r, Relation &s,
-                                                     int satisfaction);
+    std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> SR2TR(
+        Relation &r, Relation &s, int satisfaction);
 
     /**
             Prints the results of the algorithm SR2TR
@@ -45,7 +45,7 @@ class Mapping {
     uint32_t m;
 
     Condensed_representation *cr;
-    UIND *uind;
+    Unary_inclusion_dependency *unary_inclusion_dependency;
 
     std::vector<std::pair<uint32_t, uint32_t>> f;
     double cost;

@@ -85,13 +85,11 @@ bool ReadTextFile::openTextFile(const char *szFileName,
                                 std::vector<std::string> &vstring) {
     // Au cas ou le fichier serait ouvert
     closeTextFile();
-    std::cout << szFileName << std::endl;
     _ifs.open(szFileName);
     if (!_ifs.good()) {
         std::cout << "File not good" << std::endl;
         return false;
     }
-    std::cout << "Surprisingly file is good" << std::endl;
 
     // Le delim est connu
     if ('\0' != getDelim()) {

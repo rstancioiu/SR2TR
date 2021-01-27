@@ -2,17 +2,20 @@ language: cpp
 
 sudo: required
 dist: focal
-compiler: gcc
+compiler: clang
 
 install:
   - echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
   - curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
-  - sudo apt-get update && sudo apt-get install -y bazel gcc g++10
+  - sudo apt-get update && sudo apt-get install -y bazel gcc gcc-10 clang g++-10
 
 script:
   - bazel test --curses=no //...:all
 
-# safelist
+#safelist
 branches:
   only:
   - master
+
+notification:
+  email: false

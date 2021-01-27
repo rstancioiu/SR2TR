@@ -62,8 +62,10 @@ cc_toolchain_config(
     "/usr/include/c++/10",
     "/usr/include/x86_64-linux-gnu/c++/10",
     "/usr/include/c++/10/backward"],
-    tool_paths = {"ar": "/usr/bin/ar",
+    tool_paths = {
+        "ar": "/usr/bin/ar",
         "ld": "/usr/bin/ld",
+        "llvm-cov": "/usr/bin/llvm-cov-10",
         "cpp": "/usr/bin/cpp-10",
         "gcc": "/usr/bin/gcc-10",
         "dwp": "/usr/bin/dwp",
@@ -71,7 +73,8 @@ cc_toolchain_config(
         "nm": "/usr/bin/nm",
         "objcopy": "/usr/bin/objcopy",
         "objdump": "/usr/bin/objdump",
-        "strip": "/usr/bin/strip"},
+        "strip": "/usr/bin/strip"
+    },
     compile_flags = ["-U_FORTIFY_SOURCE",
     "-fstack-protector",
     "-Wall",

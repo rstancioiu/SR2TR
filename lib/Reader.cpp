@@ -61,7 +61,7 @@ void Reader::read(const char *data, Relation &relation,
             if (aux[i].second != -1) {
                 double error;
                 sscanf(vstring[aux[i].second].c_str(), "%lf", &error);
-                error = abs(error);
+                error = std::abs(error);
                 new_attribute.push_back(Interval(value - error, value + error));
             } else
                 new_attribute.push_back(Interval(value, value));

@@ -6,8 +6,8 @@
 
 class Integration_test : public ::testing::Test {
    protected:
-    void Setup(const std::string& source_relation_relative_path,
-               const std::string& target_relation_relative_path) {
+    void Setup_relations(const std::string& source_relation_relative_path,
+                         const std::string& target_relation_relative_path) {
         Reader reader;
         std::string source_full_path =
             std::filesystem::current_path().string() +
@@ -34,8 +34,8 @@ class Integration_test : public ::testing::Test {
 };
 
 TEST_F(Integration_test, Sample_test_1_satisfaction_metric_1) {
-    Setup("/test/sample-tests/test1/source.csv",
-          "/test/sample-tests/test1/target.csv");
+    Setup_relations("/test/sample-tests/test1/source.csv",
+                    "/test/sample-tests/test1/target.csv");
     Mapping mapping;
     static constexpr int Satisfaction = 1;
     std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> matching =
@@ -55,8 +55,8 @@ TEST_F(Integration_test, Sample_test_1_satisfaction_metric_1) {
 }
 
 TEST_F(Integration_test, Sample_test_1_satisfaction_metric_2) {
-    Setup("/test/sample-tests/test1/source.csv",
-          "/test/sample-tests/test1/target.csv");
+    Setup_relations("/test/sample-tests/test1/source.csv",
+                    "/test/sample-tests/test1/target.csv");
     Mapping mapping;
     static constexpr int Satisfaction = 2;
     std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> matching =
@@ -76,8 +76,8 @@ TEST_F(Integration_test, Sample_test_1_satisfaction_metric_2) {
 }
 
 TEST_F(Integration_test, Sample_test_2_satisfaction_metric_1) {
-    Setup("/test/sample-tests/test2/source.csv",
-          "/test/sample-tests/test2/target.csv");
+    Setup_relations("/test/sample-tests/test2/source.csv",
+                    "/test/sample-tests/test2/target.csv");
     Mapping mapping;
     static constexpr int Satisfaction = 1;
     std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> matching =
@@ -98,8 +98,8 @@ TEST_F(Integration_test, Sample_test_2_satisfaction_metric_1) {
 }
 
 TEST_F(Integration_test, Sample_test_2_satisfaction_metric_2) {
-    Setup("/test/sample-tests/test2/source.csv",
-          "/test/sample-tests/test2/target.csv");
+    Setup_relations("/test/sample-tests/test2/source.csv",
+                    "/test/sample-tests/test2/target.csv");
     Mapping mapping;
     static constexpr int Satisfaction = 2;
     std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> matching =
@@ -120,7 +120,8 @@ TEST_F(Integration_test, Sample_test_2_satisfaction_metric_2) {
 }
 
 TEST_F(Integration_test, Large_test_satisfaction_metric_1) {
-    Setup("/test/large-tests/source.csv", "/test/large-tests/target.csv");
+    Setup_relations("/test/large-tests/source.csv",
+                    "/test/large-tests/target.csv");
     Mapping mapping;
     static constexpr int Satisfaction = 1;
     std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> matching =
@@ -144,7 +145,8 @@ TEST_F(Integration_test, Large_test_satisfaction_metric_1) {
 }
 
 TEST_F(Integration_test, Large_test_satisfaction_metric_2) {
-    Setup("/test/large-tests/source.csv", "/test/large-tests/target.csv");
+    Setup_relations("/test/large-tests/source.csv",
+                    "/test/large-tests/target.csv");
     Mapping mapping;
     static constexpr int Satisfaction = 2;
     std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> matching =

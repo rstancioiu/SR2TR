@@ -6,11 +6,6 @@
 class Condensed_representation {
    public:
     /**
-            Default Constructor
-    */
-    Condensed_representation(){};
-
-    /**
             Computes the condensed representation (an array of binary relations)
             of two relations r and s, based on the satisfaction chosen
             @param  r source relation

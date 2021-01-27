@@ -1,7 +1,8 @@
 build --color=yes
 
 # C++ Configuration
-build --cxxopt='-std=c++17'
+build --crosstool_top=//toolchain:gcc10_toolchain_suite
+build --cxxopt='-std=c++20'
 build --cxxopt=-Wno-unknown-warning-option
 build --cxxopt=-Wno-unused-command-line-argument
 build --cxxopt=-Wno-deprecated

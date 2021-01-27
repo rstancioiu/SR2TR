@@ -12,6 +12,11 @@ install:
 script:
   - bazel test --curses=no //...:all
 
+# safelist
+branches:
+  only:
+  - master
+
 addons:
   apt:
     packages:

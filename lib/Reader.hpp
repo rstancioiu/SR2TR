@@ -6,11 +6,6 @@
 class Reader {
    public:
     /**
-            Default constructor
-    */
-    Reader(){};
-
-    /**
             From two files, the method calls "read" to transform the files into
             relations.
             @param  data_r input file to transform into the source relation

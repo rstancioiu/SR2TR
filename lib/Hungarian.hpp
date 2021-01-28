@@ -8,33 +8,33 @@ class Hungarian {
     Hungarian(){};
 
     /**
-            Constructs the weighted bipartite graph from the cost matrix
-            In case that the matrix is not n*n, then the matrix is extended
-            with rows composed by zero.
+        Constructs the weighted bipartite graph from the cost matrix
+        In case that the matrix is not n*n, then the matrix is extended
+        with rows composed by zero.
     */
     Hungarian(std::vector<std::vector<double>> &cost_matrix);
 
     /**
-            Computes the hungarian algorithm for the graph formed
-            @return a pair composed of the minimum cost of the matching
-                            and a vector corresponding to the matching
+        Computes the hungarian algorithm for the graph formed
+        @return a pair composed of the minimum cost of the matching
+                and a vector corresponding to the matching
     */
     std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>>
     compute_hungarian();
 
    private:
     /**
-            Recursive Method that realizes a Depth First Search from
-            given vertex v. It is used in the hopcroft_karp method.
-            @param vertex v
+        Recursive Method that realizes a Depth First Search from
+        given vertex v. It is used in the hopcroft_karp method.
+        @param vertex v
     */
     bool dfs_hopcroft_karp(uint32_t v);
 
     /**
-            The algorithm hopcroft karp that checks if for a given bipartite
-       graph, there is a perfect matching.
-            @return true if perfect matching
-                            false if otherwise
+        The algorithm hopcroft karp that checks if for a given bipartite
+        graph, there is a perfect matching.
+        @return true if perfect matching
+                false if otherwise
     */
     bool hopcroft_karp();
 

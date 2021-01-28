@@ -230,7 +230,7 @@ void Condensed_representation::print_cr() {
               << std::endl;
     for (uint32_t i = 0; i < adom.size(); ++i) {
         std::cout << "[" << std::setw(4) << adom[i].first << ";" << std::setw(5)
-                  << adom[i].second << "] || " << cr[i].toString() << std::endl;
+                  << adom[i].second << "] || " << cr[i] << std::endl;
     }
     std::cout << std::endl;
 }

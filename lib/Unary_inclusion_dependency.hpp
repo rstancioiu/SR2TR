@@ -5,11 +5,6 @@
 class Unary_inclusion_dependency {
    public:
     /**
-            Default constructor
-    */
-    Unary_inclusion_dependency(){};
-
-    /**
             Generate the matrix of error measures ( approximate unary inclusion
        dependencies) from a condensed representation
             @param cr condensed representation

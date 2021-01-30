@@ -26,7 +26,7 @@ class Bitset {
 
     void resize(uint32_t length) { array.resize(length); }
 
-    std::strong_ordering operator<=>(const Bitset &bitset_to_compare) const;
+    std::strong_ordering operator<=>(const Bitset &to_compare) const;
 
     void print(std::ostream &stream) const;
 

@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 
-#include "lib/Mapping.hpp"
-#include "lib/Reader.hpp"
+#include "Mapping.hpp"
+#include "Reader.hpp"
 
 const char *data_r;
 const char *data_s;

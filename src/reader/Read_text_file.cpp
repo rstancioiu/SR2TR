@@ -1,22 +1,21 @@
-#include "ReadTextFile.hpp"
+#include "Read_text_file.hpp"
 
 #include <iostream>
-#include <string>
 
-ReadTextFile::ReadTextFile(char cDelim)
+Read_text_file::Read_text_file(char cDelim)
     : _cDelim(cDelim), _uNbCol(0), _uNbLine(0) {}
 
-ReadTextFile::~ReadTextFile() { closeTextFile(); }
+Read_text_file::~Read_text_file() { closeTextFile(); }
 
-inline bool ReadTextFile::emptyLine(const std::string &str) {
+inline bool Read_text_file::emptyLine(const std::string &str) {
     for (std::string::const_iterator it = str.begin(); it != str.end(); ++it)
         if (*it >= ' ') return false;
 
     return true;
 }
 
-inline void ReadTextFile::splitline(const std::string &str, char cDelim,
-                                    std::vector<std::string> &vstring) const {
+inline void Read_text_file::splitline(const std::string &str, char cDelim,
+                                      std::vector<std::string> &vstring) const {
     vstring.clear();
     // StringTokenizer...
     for (size_t posBegin = 0, posEnd = 0; posEnd != std::string::npos;
@@ -36,7 +35,7 @@ inline void ReadTextFile::splitline(const std::string &str, char cDelim,
     }
 }
 
-inline void ReadTextFile::computeNbLine(const char *szFileName) {
+inline void Read_text_file::computeNbLine(const char *szFileName) {
     _uNbLine = 0;
 
     std::string str;
@@ -56,7 +55,7 @@ inline void ReadTextFile::computeNbLine(const char *szFileName) {
     }
 }
 
-inline bool ReadTextFile::readline(std::string &str) {
+inline bool Read_text_file::readline(std::string &str) {
     str.clear();
 
     while (true) {
@@ -81,8 +80,8 @@ inline bool ReadTextFile::readline(std::string &str) {
     return false;
 }
 
-bool ReadTextFile::openTextFile(const char *szFileName,
-                                std::vector<std::string> &vstring) {
+bool Read_text_file::openTextFile(const char *szFileName,
+                                  std::vector<std::string> &vstring) {
     // Au cas ou le fichier serait ouvert
     closeTextFile();
     _ifs.open(szFileName);
@@ -128,14 +127,14 @@ bool ReadTextFile::openTextFile(const char *szFileName,
     return true;
 }
 
-void ReadTextFile::closeTextFile() {
+void Read_text_file::closeTextFile() {
     _uNbLine = 0;
 
     if (_ifs.is_open()) _ifs.close();
 }
 
-bool ReadTextFile::getline(std::vector<std::string> &vstring,
-                           bool strick /*= true*/) {
+bool Read_text_file::getline(std::vector<std::string> &vstring,
+                             bool strick /*= true*/) {
     std::string str;
 
     if (!readline(str)) {

@@ -1,8 +1,8 @@
 #include <filesystem>
 
+#include "Mapping.hpp"
+#include "Reader.hpp"
 #include "gtest/gtest.h"
-#include "lib/Mapping.hpp"
-#include "lib/Reader.hpp"
 
 class Integration_test : public ::testing::Test {
    protected:

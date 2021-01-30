@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Bitset.hpp"
 #include "Relation.hpp"
+#include "util/Bitset.hpp"
 
 class Condensed_representation {
    public:

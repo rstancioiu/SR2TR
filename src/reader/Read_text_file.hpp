@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-class ReadTextFile {
+class Read_text_file {
    private:
     char _cDelim;
     size_t _uNbCol;
@@ -24,8 +24,8 @@ class ReadTextFile {
     bool readline(std::string &str);
 
    public:
-    ReadTextFile(char cDelim = '\0');
-    ~ReadTextFile();
+    Read_text_file(char cDelim = '\0');
+    ~Read_text_file();
 
     size_t getNbLine() { return _uNbLine; }
     size_t getNbCol() { return _uNbCol; }

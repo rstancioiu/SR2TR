@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "lib/Bitset.hpp"
-#include "lib/ReadTextFile.hpp"
+#include "Bitset.hpp"
+#include "ReadTextFile.hpp"
 
 const char* data_r;
 std::vector<std::string> col;

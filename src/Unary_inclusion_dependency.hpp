@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Bitset.hpp"
+#include "util/Bitset.hpp"
 
 class Unary_inclusion_dependency {
    public:

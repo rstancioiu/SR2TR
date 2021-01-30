@@ -16,5 +16,5 @@ bazel --version
 ```
 ### Build solution
 ```
-bazel run command-line:main -- "%SOURCE FILE FULL PATH%" "%TARGET FILE FULL PATH%"
+bazel run command_line -- "%SOURCE FILE FULL PATH%" "%TARGET FILE FULL PATH%"
 ```

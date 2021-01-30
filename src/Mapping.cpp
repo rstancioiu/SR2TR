@@ -3,7 +3,10 @@
 #include <iostream>
 #include <vector>
 
-#include "Hungarian.hpp"
+#include "Condensed_representation.hpp"
+#include "Unary_inclusion_dependency.hpp"
+#include "mapping/Hungarian.hpp"
+#include "util/Bitset.hpp"
 
 std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> Mapping::SR2TR(
     Relation &r, Relation &s, int satisfaction) {

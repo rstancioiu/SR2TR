@@ -1,16 +1,15 @@
 #pragma once
 
-#include "Bitset.hpp"
-#include "Condensed_representation.hpp"
-#include "Unary_inclusion_dependency.hpp"
+#include <string>
+#include <vector>
+
+#include "Relation.hpp"
+
+class Condensed_representation;
+class Unary_inclusion_dependency;
 
 class Mapping {
    public:
-    /**
-            Default Constructor
-    */
-    Mapping(){};
-
     /**
             Algorithm of finding the mapping function from R to S
             @param r the source relation

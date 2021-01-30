@@ -1,5 +1,7 @@
 #include "Reader.hpp"
 
+#include "reader/Read_text_file.hpp"
+
 std::pair<std::pair<Relation, std::vector<std::string>>,
           std::pair<Relation, std::vector<std::string>>>
 Reader::readFiles(const char *data_r, const char *data_s) {
@@ -14,7 +16,7 @@ void Reader::read(const char *data, Relation &relation,
                   std::vector<std::string> &attrName) {
     // search the column names in the input data
     char _cDelim = '\0';
-    ReadTextFile textFile(_cDelim);
+    Read_text_file textFile(_cDelim);
     if (!textFile.openTextFile(data, attrName)) return;
 
     // array used to find the error measurement associated to a certain

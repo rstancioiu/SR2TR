@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ReadTextFile.hpp"
+#include <string>
+
 #include "Relation.hpp"
 
 class Reader {

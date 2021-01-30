@@ -12,16 +12,16 @@ std::vector<std::vector<double>> Unary_inclusion_dependency::MEM(
         // compute the support sup(A)
         uint32_t support = 0;
         for (uint32_t j = 0; j < cr.size(); ++j) {
-            if (cr[j].check(A)) {
+            if (cr[j].test(A)) {
                 support++;
             }
         }
 
         // compute the support sup(AB) for each B in S
         for (uint32_t j = 0; j < cr.size(); ++j) {
-            if (cr[j].check(A)) {
+            if (cr[j].test(A)) {
                 for (uint32_t B = 0; B < ssize; ++B) {
-                    if (cr[j].check(B + rsize)) {
+                    if (cr[j].test(B + rsize)) {
                         count[B]++;
                     }
                 }

@@ -1,52 +1,38 @@
 #pragma once
 
-#include <concepts>
 #include <cstdint>
-#include <fstream>
 #include <string>
 #include <vector>
 
+#include "Printable.hpp"
+
+/*
+ * Bitset is different from std::bitset because of:
+ *  - a specific comparator function
+ *  - length of the bitset changes at runtime
+ */
 class Bitset {
    public:
     Bitset(uint32_t length = 256u);
 
-    Bitset(std::vector<bool> &new_bitset);
+    Bitset(const std::vector<bool> &new_array);
 
-    void clear();
+    bool test(uint32_t index) const { return array.at(index); }
 
-    bool empty() const;
+    void set(uint32_t index, bool bit) { array.at(index) = bit; }
 
-    void set(uint32_t index, bool value);
+    uint32_t size() { return array.size(); }
 
-    uint32_t count() const;
+    void resize(uint32_t length) { array.resize(length); }
 
-    bool check(uint32_t index) const;
-
-    uint32_t size();
-
-    void resize(uint32_t length);
+    std::strong_ordering operator<=>(const Bitset &bitset_to_compare) const;
 
     void print(std::ostream &stream) const;
 
-    bool operator<(Bitset const &b) const;
-
-    bool operator>(Bitset const &b) const;
-
-    bool operator==(const Bitset &b) const;
-
-    bool operator!=(const Bitset &b) const;
-
    private:
-    std::vector<bool> bitset_array;
-};
+    std::vector<bool> array;
 
-template <typename Object>
-concept Printable = requires(std::ostream &stream, Object const &object) {
-    {object.print(stream)};
+    uint32_t count() const {
+        return std::count(array.begin(), array.end(), true);
+    }
 };
-
-template <Printable Object>
-std::ostream &operator<<(std::ostream &stream, const Object &object) {
-    object.print(stream);
-    return stream;
-}

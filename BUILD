@@ -43,6 +43,7 @@ cc_test(
 
 cc_test(
     name = "integration_tests",
+    size = "small",
     srcs = ["test/Integration_tests.cpp"],
     deps = [
         ":sr2tr",

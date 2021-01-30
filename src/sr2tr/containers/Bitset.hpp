@@ -1,10 +1,11 @@
 #pragma once
 
 #include <cstdint>
-#include <string>
 #include <vector>
 
-#include "Printable.hpp"
+#include "../util/Printable.hpp"
+
+namespace sr2tr::containers {
 
 /*
  * Bitset is different from std::bitset because of:
@@ -36,3 +37,5 @@ class Bitset {
         return std::count(array.begin(), array.end(), true);
     }
 };
+
+}  // namespace sr2tr::containers

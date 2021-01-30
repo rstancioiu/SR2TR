@@ -1,6 +1,6 @@
 #include "Read_text_file.hpp"
 
-#include <iostream>
+namespace sr2tr::reader {
 
 Read_text_file::Read_text_file(char cDelim)
     : _cDelim(cDelim), _uNbCol(0), _uNbLine(0) {}
@@ -86,7 +86,6 @@ bool Read_text_file::openTextFile(const char *szFileName,
     closeTextFile();
     _ifs.open(szFileName);
     if (!_ifs.good()) {
-        std::cout << "File not good" << std::endl;
         return false;
     }
 
@@ -144,3 +143,5 @@ bool Read_text_file::getline(std::vector<std::string> &vstring,
 
     return !strick || (vstring.size() == getNbCol());
 }
+
+}  // namespace sr2tr::reader

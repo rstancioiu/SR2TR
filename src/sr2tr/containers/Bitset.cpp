@@ -1,5 +1,7 @@
 #include "Bitset.hpp"
 
+namespace sr2tr::containers {
+
 Bitset::Bitset(uint32_t length) : array(length, false) {}
 
 Bitset::Bitset(const std::vector<bool> &new_array) { array = new_array; }
@@ -27,3 +29,5 @@ void Bitset::print(std::ostream &stream) const {
         }
     }
 }
+
+}  // namespace sr2tr::containers

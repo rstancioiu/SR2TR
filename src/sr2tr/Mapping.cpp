@@ -1,12 +1,16 @@
-#include "Mapping.hpp"
+#include "sr2tr/Mapping.hpp"
 
 #include <iostream>
 #include <vector>
 
 #include "Condensed_representation.hpp"
 #include "Unary_inclusion_dependency.hpp"
+#include "containers/Bitset.hpp"
 #include "mapping/Hungarian.hpp"
-#include "util/Bitset.hpp"
+
+namespace sr2tr {
+using namespace containers;
+using namespace mapping;
 
 std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>> Mapping::SR2TR(
     Relation &r, Relation &s, int satisfaction) {
@@ -78,3 +82,5 @@ void Mapping::print_results(std::vector<std::string> &colr,
 
     std::cout << std::endl;
 }
+
+}  // namespace sr2tr

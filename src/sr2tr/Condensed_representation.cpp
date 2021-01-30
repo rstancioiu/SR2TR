@@ -4,6 +4,9 @@
 #include <iomanip>
 #include <iostream>
 
+namespace sr2tr {
+using namespace containers;
+
 void Condensed_representation::compute_canonical_adom(Relation &r,
                                                       Relation &s) {
     canonicalAttrAdom = new std::vector<double>[n + m];
@@ -234,3 +237,5 @@ void Condensed_representation::print_cr() {
     }
     std::cout << std::endl;
 }
+
+}  // namespace sr2tr

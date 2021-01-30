@@ -5,6 +5,8 @@
 
 #include "Relation.hpp"
 
+namespace sr2tr {
+
 class Condensed_representation;
 class Unary_inclusion_dependency;
 
@@ -49,3 +51,5 @@ class Mapping {
     std::vector<std::pair<uint32_t, uint32_t>> f;
     double cost;
 };
+
+}  // namespace sr2tr

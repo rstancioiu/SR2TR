@@ -2,8 +2,10 @@
 #include <string>
 #include <vector>
 
-#include "Mapping.hpp"
-#include "Reader.hpp"
+#include "sr2tr/Mapping.hpp"
+#include "sr2tr/Reader.hpp"
+
+using namespace sr2tr;
 
 const char *data_r;
 const char *data_s;

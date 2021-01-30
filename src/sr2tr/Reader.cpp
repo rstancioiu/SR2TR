@@ -1,6 +1,9 @@
-#include "Reader.hpp"
+#include "sr2tr/Reader.hpp"
 
 #include "reader/Read_text_file.hpp"
+
+namespace sr2tr {
+using namespace reader;
 
 std::pair<std::pair<Relation, std::vector<std::string>>,
           std::pair<Relation, std::vector<std::string>>>
@@ -71,3 +74,5 @@ void Reader::read(const char *data, Relation &relation,
         relation.push_back(new_attribute);
     }
 }
+
+}  // namespace sr2tr

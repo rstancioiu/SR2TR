@@ -3,6 +3,9 @@
 #include <iomanip>
 #include <iostream>
 
+namespace sr2tr {
+using namespace containers;
+
 std::vector<std::vector<double>> Unary_inclusion_dependency::MEM(
     std::vector<Bitset> &cr, uint32_t rsize, uint32_t ssize) {
     for (uint32_t A = 0; A < rsize; ++A) {
@@ -63,3 +66,5 @@ void Unary_inclusion_dependency::print_matrix() {
     }
     std::cout << std::endl;
 }
+
+}  // namespace sr2tr

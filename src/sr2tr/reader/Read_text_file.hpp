@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+namespace sr2tr::reader {
+
 class Read_text_file {
    private:
     char _cDelim;
@@ -36,3 +38,5 @@ class Read_text_file {
 
     bool getline(std::vector<std::string> &vstring, bool strict = true);
 };
+
+}  // namespace sr2tr::reader

@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+namespace sr2tr::mapping {
+
 Hungarian::Hungarian(std::vector<std::vector<double>> &cost_matrix) {
     n = cost_matrix.size();
     m = 2 * n + 2;
@@ -193,3 +195,5 @@ Hungarian::compute_hungarian() {
     }
     return make_pair(minimum_cost, matching);
 }
+
+}  // namespace sr2tr::mapping

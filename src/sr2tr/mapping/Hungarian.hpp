@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <vector>
 
+namespace sr2tr::mapping {
+
 class Hungarian {
    public:
     Hungarian(){};
@@ -112,3 +114,5 @@ class Hungarian {
     // array corresponding to the right side R of the bipartite graph
     uint32_t *r;
 };
+
+}  // namespace sr2tr::mapping

@@ -1,6 +1,8 @@
 #pragma once
 
-#include "util/Bitset.hpp"
+#include "containers/Bitset.hpp"
+
+namespace sr2tr {
 
 class Unary_inclusion_dependency {
    public:
@@ -12,7 +14,7 @@ class Unary_inclusion_dependency {
                        sszie size of the target relation s
             @return 2D-array corresponding to the matrix of error measures
     */
-    std::vector<std::vector<double>> MEM(std::vector<Bitset> &cr,
+    std::vector<std::vector<double>> MEM(std::vector<containers::Bitset> &cr,
                                          uint32_t rsize, uint32_t ssize);
 
     /**
@@ -23,3 +25,5 @@ class Unary_inclusion_dependency {
    private:
     std::vector<std::vector<double>> M;
 };
+
+}  // namespace sr2tr

@@ -1,8 +1,10 @@
 #include <filesystem>
 
-#include "Mapping.hpp"
-#include "Reader.hpp"
 #include "gtest/gtest.h"
+#include "sr2tr/Mapping.hpp"
+#include "sr2tr/Reader.hpp"
+
+using namespace sr2tr;
 
 class Integration_test : public ::testing::Test {
    protected:

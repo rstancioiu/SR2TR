@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Relation.hpp"
-#include "util/Bitset.hpp"
+#include "containers/Bitset.hpp"
+#include "sr2tr/Relation.hpp"
+
+namespace sr2tr {
 
 class Condensed_representation {
    public:
@@ -14,13 +16,13 @@ class Condensed_representation {
             @return an array of binary relations, i.e. the condensed
        representation
     */
-    std::vector<Bitset> Preprocessing(Relation &r, Relation &s,
-                                      int satisfaction);
+    std::vector<containers::Bitset> Preprocessing(Relation &r, Relation &s,
+                                                  int satisfaction);
 
     /**
             Shows the result of the preprocessing
     */
-    void print_cr();
+    void print(std::ostream &stream);
 
    private:
     /**
@@ -94,5 +96,7 @@ class Condensed_representation {
 
     uint32_t n, m;
 
-    std::vector<Bitset> cr;
+    std::vector<containers::Bitset> cr;
 };
+
+}  // namespace sr2tr

@@ -4,6 +4,8 @@
 
 #include "Relation.hpp"
 
+namespace sr2tr {
+
 class Reader {
    public:
     /**
@@ -28,3 +30,5 @@ class Reader {
     void read(const char *data, Relation &new_relation,
               std::vector<std::string> &attrName);
 };
+
+}  // namespace sr2tr

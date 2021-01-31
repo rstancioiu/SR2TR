@@ -4,6 +4,9 @@
 #include <iomanip>
 #include <iostream>
 
+namespace sr2tr {
+using namespace containers;
+
 void Condensed_representation::compute_canonical_adom(Relation &r,
                                                       Relation &s) {
     canonicalAttrAdom = new std::vector<double>[n + m];
@@ -221,16 +224,15 @@ std::vector<Bitset> Condensed_representation::Preprocessing(Relation &r,
     return cr;
 }
 
-void Condensed_representation::print_cr() {
-    std::cout << "--------------------------------------------------"
-              << std::endl;
-    std::cout << "        CONDENSED REPRESENTATION CR(r,s)          "
-              << std::endl;
-    std::cout << "--------------------------------------------------"
-              << std::endl;
+void Condensed_representation::print(std::ostream &stream) {
+    stream << "--------------------------------------------------" << std::endl;
+    stream << "        CONDENSED REPRESENTATION CR(r,s)          " << std::endl;
+    stream << "--------------------------------------------------" << std::endl;
     for (uint32_t i = 0; i < adom.size(); ++i) {
-        std::cout << "[" << std::setw(4) << adom[i].first << ";" << std::setw(5)
-                  << adom[i].second << "] || " << cr[i] << std::endl;
+        stream << "[" << std::setw(4) << adom[i].first << ";" << std::setw(5)
+               << adom[i].second << "] || " << cr[i] << std::endl;
     }
-    std::cout << std::endl;
+    stream << std::endl;
 }
+
+}  // namespace sr2tr

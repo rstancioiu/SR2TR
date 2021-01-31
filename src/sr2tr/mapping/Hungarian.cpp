@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+namespace sr2tr::mapping {
+
 Hungarian::Hungarian(std::vector<std::vector<double>> &cost_matrix) {
     n = cost_matrix.size();
     m = 2 * n + 2;
@@ -161,14 +163,14 @@ void Hungarian::additional_zeros() {
     }
 }
 
-void Hungarian::print_matrix() {
+void Hungarian::print(std::ostream &stream) {
     for (uint32_t i = 1; i <= n; ++i) {
         for (uint32_t j = 1; j <= n; ++j) {
-            std::cout << cost[i][j] << " ";
+            stream << cost[i][j] << " ";
         }
-        std::cout << std::endl;
+        stream << std::endl;
     }
-    std::cout << std::endl;
+    stream << std::endl;
 }
 
 std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>>
@@ -193,3 +195,5 @@ Hungarian::compute_hungarian() {
     }
     return make_pair(minimum_cost, matching);
 }
+
+}  // namespace sr2tr::mapping

@@ -3,6 +3,9 @@
 #include <iomanip>
 #include <iostream>
 
+namespace sr2tr {
+using namespace containers;
+
 std::vector<std::vector<double>> Unary_inclusion_dependency::MEM(
     std::vector<Bitset> &cr, uint32_t rsize, uint32_t ssize) {
     for (uint32_t A = 0; A < rsize; ++A) {
@@ -12,16 +15,16 @@ std::vector<std::vector<double>> Unary_inclusion_dependency::MEM(
         // compute the support sup(A)
         uint32_t support = 0;
         for (uint32_t j = 0; j < cr.size(); ++j) {
-            if (cr[j].check(A)) {
+            if (cr[j].test(A)) {
                 support++;
             }
         }
 
         // compute the support sup(AB) for each B in S
         for (uint32_t j = 0; j < cr.size(); ++j) {
-            if (cr[j].check(A)) {
+            if (cr[j].test(A)) {
                 for (uint32_t B = 0; B < ssize; ++B) {
-                    if (cr[j].check(B + rsize)) {
+                    if (cr[j].test(B + rsize)) {
                         count[B]++;
                     }
                 }
@@ -48,18 +51,17 @@ std::vector<std::vector<double>> Unary_inclusion_dependency::MEM(
     return ret_M;
 }
 
-void Unary_inclusion_dependency::print_matrix() {
-    std::cout << "--------------------------------------------------"
-              << std::endl;
-    std::cout << "        MATRIX ERROR BETWEEN R AND S              "
-              << std::endl;
-    std::cout << "--------------------------------------------------"
-              << std::endl;
+void Unary_inclusion_dependency::print(std::ostream &stream) {
+    stream << "--------------------------------------------------" << std::endl;
+    stream << "        MATRIX ERROR BETWEEN R AND S              " << std::endl;
+    stream << "--------------------------------------------------" << std::endl;
     for (uint32_t i = 0; i < M.size(); ++i) {
         for (uint32_t j = 0; j < M[i].size(); ++j) {
-            std::cout << std::fixed << std::setprecision(3) << M[i][j] << " ";
+            stream << std::fixed << std::setprecision(3) << M[i][j] << " ";
         }
-        std::cout << std::endl;
+        stream << std::endl;
     }
-    std::cout << std::endl;
+    stream << std::endl;
 }
+
+}  // namespace sr2tr

@@ -22,7 +22,7 @@ class Condensed_representation {
     /**
             Shows the result of the preprocessing
     */
-    void print_cr();
+    void print(std::ostream &stream);
 
    private:
     /**

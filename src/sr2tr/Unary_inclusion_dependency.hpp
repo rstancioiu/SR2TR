@@ -20,7 +20,7 @@ class Unary_inclusion_dependency {
     /**
             Method used to print the state of the matrix
     */
-    void print_matrix();
+    void print(std::ostream &stream);
 
    private:
     std::vector<std::vector<double>> M;

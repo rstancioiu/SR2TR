@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <ostream>
 #include <vector>
 
 namespace sr2tr::mapping {
@@ -82,10 +83,7 @@ class Hungarian {
     */
     void additional_zeros();
 
-    /**
-            Method that prints the state of the cost matrix
-    */
-    void print_matrix();
+    void print(std::ostream &stream);
 
    private:
     // the size of the initial cost matrix

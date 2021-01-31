@@ -163,14 +163,14 @@ void Hungarian::additional_zeros() {
     }
 }
 
-void Hungarian::print_matrix() {
+void Hungarian::print(std::ostream &stream) {
     for (uint32_t i = 1; i <= n; ++i) {
         for (uint32_t j = 1; j <= n; ++j) {
-            std::cout << cost[i][j] << " ";
+            stream << cost[i][j] << " ";
         }
-        std::cout << std::endl;
+        stream << std::endl;
     }
-    std::cout << std::endl;
+    stream << std::endl;
 }
 
 std::pair<double, std::vector<std::pair<uint32_t, uint32_t>>>

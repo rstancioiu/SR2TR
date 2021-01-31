@@ -51,20 +51,17 @@ std::vector<std::vector<double>> Unary_inclusion_dependency::MEM(
     return ret_M;
 }
 
-void Unary_inclusion_dependency::print_matrix() {
-    std::cout << "--------------------------------------------------"
-              << std::endl;
-    std::cout << "        MATRIX ERROR BETWEEN R AND S              "
-              << std::endl;
-    std::cout << "--------------------------------------------------"
-              << std::endl;
+void Unary_inclusion_dependency::print(std::ostream &stream) {
+    stream << "--------------------------------------------------" << std::endl;
+    stream << "        MATRIX ERROR BETWEEN R AND S              " << std::endl;
+    stream << "--------------------------------------------------" << std::endl;
     for (uint32_t i = 0; i < M.size(); ++i) {
         for (uint32_t j = 0; j < M[i].size(); ++j) {
-            std::cout << std::fixed << std::setprecision(3) << M[i][j] << " ";
+            stream << std::fixed << std::setprecision(3) << M[i][j] << " ";
         }
-        std::cout << std::endl;
+        stream << std::endl;
     }
-    std::cout << std::endl;
+    stream << std::endl;
 }
 
 }  // namespace sr2tr

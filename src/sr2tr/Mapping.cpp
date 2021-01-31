@@ -61,8 +61,8 @@ Mapping::FindMatching(std::vector<std::vector<double>> &M) {
 
 void Mapping::print_results(std::vector<std::string> &colr,
                             std::vector<std::string> &cols) {
-    cr->print_cr();
-    unary_inclusion_dependency->print_matrix();
+    std::cout << cr << std::endl;
+    std::cout << unary_inclusion_dependency << std::endl;
 
     std::cout << "--------------------------------------------------"
               << std::endl;

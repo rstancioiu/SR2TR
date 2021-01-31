@@ -16,7 +16,7 @@ std::strong_ordering Bitset::operator<=>(const Bitset &to_compare) const {
             }
         }
     }
-    return (nb_bits_in_bitset <=> to_compare);
+    return (nb_bits_in_bitset <=> nb_bits_in_bitset_to_compare);
 }
 
 void Bitset::print(std::ostream &stream) const {

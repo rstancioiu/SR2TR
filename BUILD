@@ -39,6 +39,9 @@ cc_test(
         ":sr2tr",
         "@googletest//:gtest_main"
     ],
+    data = glob([
+        "test/sample-tests/**/*.csv"
+    ]),
 )
 
 cc_test(

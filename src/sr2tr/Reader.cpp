@@ -1,78 +1,78 @@
 #include "sr2tr/Reader.hpp"
 
-#include "reader/Read_text_file.hpp"
+#include "reader/CSV_file_reader.hpp"
 
 namespace sr2tr {
 using namespace reader;
 
-std::pair<std::pair<Relation, std::vector<std::string>>,
-          std::pair<Relation, std::vector<std::string>>>
-Reader::readFiles(const char *data_r, const char *data_s) {
-    Relation r, s;
-    std::vector<std::string> cr, cs;
-    read(data_r, r, cr);
-    read(data_s, s, cs);
-    return make_pair(make_pair(r, cr), make_pair(s, cs));
+std::tuple<Relation, std::vector<std::string>> Reader::Read_file(
+    const std::string &file_name) {
+    Relation relation;
+    std::vector<std::string> attribute_names;
+    CSV_file_reader file_reader(file_name);
+    std::vector<std::string> column_names = file_reader.get_columns();
+    std::vector<std::pair<int, int>> column_name_with_error_list =
+        Read_column_name_with_error_list(column_names);
+    Fill_attribute_names(column_names, column_name_with_error_list,
+                         attribute_names);
+
+    std::vector<double> line_values = file_reader.get_line();
+    while (!line_values.empty()) {
+        Fill_relation(line_values, column_name_with_error_list, relation);
+        line_values = file_reader.get_line();
+    }
+    return {relation, attribute_names};
 }
 
-void Reader::read(const char *data, Relation &relation,
-                  std::vector<std::string> &attrName) {
-    // search the column names in the input data
-    char _cDelim = '\0';
-    Read_text_file textFile(_cDelim);
-    if (!textFile.openTextFile(data, attrName)) return;
-
-    // array used to find the error measurement associated to a certain
-    // parameter i.e. if A is an attribute, search for err_A
-    std::vector<std::pair<int, int>> aux;
-
-    // array used to check if an attribute was already taken into consideration
-    std::vector<bool> vis(attrName.size(), false);
-
-    // array of names of columns without error measures ("err_A")
-    std::vector<std::string> attrNameWithoutErrors;
-
-    for (uint32_t i = 0; i < attrName.size(); ++i) {
-        bool found = false;
-
-        // we check if the error is in the array of attributes
-        std::string s = "err_" + attrName[i];
-
-        for (uint32_t j = 0; j < attrName.size(); ++j) {
-            if (attrName[j] == s) {
-                found = true;
-                aux.push_back(std::make_pair(i, j));
-                attrNameWithoutErrors.push_back(attrName[i]);
-                vis[i] = true;
-                vis[j] = true;
-                break;
-            }
+std::vector<std::pair<int32_t, int32_t>>
+Reader::Read_column_name_with_error_list(
+    const std::vector<std::string> &column_names) {
+    std::vector<std::pair<int32_t, int32_t>> column_name_with_error_list;
+    for (uint32_t index_i = 0; index_i < column_names.size(); ++index_i) {
+        static const std::string Error_prefix = "err_";
+        const auto result =
+            std::mismatch(Error_prefix.begin(), Error_prefix.end(),
+                          column_names[index_i].begin());
+        if (result.first == Error_prefix.end()) {
+            continue;
         }
-        // if it is not the case
-        if (!found && !vis[i])
-            aux.push_back(std::make_pair(i, -1)),
-                vis[i] = true, attrNameWithoutErrors.push_back(attrName[i]);
-    }
-
-    attrName = attrNameWithoutErrors;
-
-    // generate the relation
-    std::vector<std::string> vstring;
-    while (textFile.getline(vstring)) {
-        std::vector<Interval> new_attribute;
-        for (uint32_t i = 0; i < aux.size(); ++i) {
-            double value;
-            sscanf(vstring[aux[i].first].c_str(), "%lf", &value);
-            if (aux[i].second != -1) {
-                double error;
-                sscanf(vstring[aux[i].second].c_str(), "%lf", &error);
-                error = abs(error);
-                new_attribute.push_back(Interval(value - error, value + error));
-            } else
-                new_attribute.push_back(Interval(value, value));
+        const std::string column_name_with_error =
+            Error_prefix + column_names[index_i];
+        auto column_name_with_error_position = std::find(
+            column_names.begin(), column_names.end(), column_name_with_error);
+        int32_t index_j = -1;
+        if (column_name_with_error_position != column_names.end()) {
+            index_j = static_cast<int32_t>(std::distance(
+                column_names.begin(), column_name_with_error_position));
         }
-        relation.push_back(new_attribute);
+        column_name_with_error_list.push_back(std::make_pair(index_i, index_j));
     }
+    return column_name_with_error_list;
+}
+
+void Reader::Fill_attribute_names(
+    const std::vector<std::string> &column_names,
+    const std::vector<std::pair<int, int>> &column_name_with_error_list,
+    std::vector<std::string> &attribute_names) {
+    for (auto column_name_with_error : column_name_with_error_list) {
+        attribute_names.push_back(column_names[column_name_with_error.first]);
+    }
+}
+
+void Reader::Fill_relation(
+    const std::vector<double> &line_values,
+    const std::vector<std::pair<int, int>> &column_name_with_error_list,
+    Relation &relation) {
+    std::vector<Interval> attribute_values;
+    for (const auto column_name_with_arror : column_name_with_error_list) {
+        double value = line_values[column_name_with_arror.first];
+        double error = 0;
+        if (column_name_with_arror.second != -1) {
+            error = abs(line_values[column_name_with_arror.second]);
+        }
+        attribute_values.push_back(Interval(value - error, value + error));
+    }
+    relation.push_back(attribute_values);
 }
 
 }  // namespace sr2tr

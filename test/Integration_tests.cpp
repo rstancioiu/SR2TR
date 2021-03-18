@@ -10,23 +10,16 @@ class Integration_test : public ::testing::Test {
    protected:
     void Setup_relations(const std::string& source_relation_relative_path,
                          const std::string& target_relation_relative_path) {
-        Reader reader;
-        std::string source_full_path =
+        const std::string source_full_path =
             std::filesystem::current_path().string() +
             source_relation_relative_path;
-        std::string target_full_path =
+        const std::string target_full_path =
             std::filesystem::current_path().string() +
             target_relation_relative_path;
-        std::pair<std::pair<Relation, std::vector<std::string>>,
-                  std::pair<Relation, std::vector<std::string>>>
-            source_and_target_relations = reader.readFiles(
-                source_full_path.c_str(), target_full_path.c_str());
-        source = std::move(source_and_target_relations.first.first);
-        column_names_source =
-            std::move(source_and_target_relations.first.second);
-        target = std::move(source_and_target_relations.second.first);
-        column_names_target =
-            std::move(source_and_target_relations.second.second);
+        std::tie(source, column_names_source) =
+            Reader::Read_file(source_full_path);
+        std::tie(target, column_names_target) =
+            Reader::Read_file(target_full_path);
     }
 
     Relation source;

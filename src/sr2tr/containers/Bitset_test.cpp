@@ -4,7 +4,7 @@
 
 #include "gtest/gtest.h"
 
-namespace sr2tr::containers {
+using namespace sr2tr::containers;
 
 TEST(Bitset, test) {
     Bitset bitset({false, true, false, true, false});
@@ -48,5 +48,3 @@ TEST(Bitset, compare_operator) {
     ASSERT_TRUE(bitset_1 <= bitset_2);
     ASSERT_TRUE(bitset_2 >= bitset_1);
 }
-
-}  // namespace sr2tr::containers

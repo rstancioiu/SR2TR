@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <tuple>
 
 #include "Relation.hpp"
 
@@ -8,27 +9,23 @@ namespace sr2tr {
 
 class Reader {
    public:
-    /**
-            From two files, the method calls "read" to transform the files into
-            relations.
-            @param  data_r input file to transform into the source relation
-                        data_s input file to transform into the target relation
-            @return a pair corresponding to the properties (a pair
-       <relation,attributes>) of the source and target input
-    */
-    std::pair<std::pair<Relation, std::vector<std::string>>,
-              std::pair<Relation, std::vector<std::string>>>
-    readFiles(const char *data_r, const char *data_s);
+    static std::tuple<Relation, std::vector<std::string>> Read_file(
+        const std::string &file_name);
 
    private:
-    /**
-            Reads an input file and transforms it into a relation
-            @param  data input file
-                        new_relation the relation that is filled from the input
-       data attrName array of the name of the attributes
-    */
-    void read(const char *data, Relation &new_relation,
-              std::vector<std::string> &attrName);
+    static std::vector<std::pair<int32_t, int32_t>>
+    Read_column_name_with_error_list(
+        const std::vector<std::string> &column_names);
+
+    static void Fill_attribute_names(
+        const std::vector<std::string> &column_names,
+        const std::vector<std::pair<int, int>> &column_name_with_error_list,
+        std::vector<std::string> &attribute_names);
+
+    static void Fill_relation(
+        const std::vector<double> &line_values,
+        const std::vector<std::pair<int, int>> &column_name_with_error_list,
+        Relation &relation);
 };
 
 }  // namespace sr2tr
